@@ -1,0 +1,159 @@
+/* ================================================================
+   styles.css  — main styles
+   - 顶部导航栏、正文布局、排版
+   - 正文字体大小 1.5rem
+   - 经典科研风格：深蓝色标题、简洁留白
+   ================================================================= */
+
+:root{
+  --deep-blue: #08306b;   /* 深蓝 */
+  --accent: #0b63d6;
+  --muted: #6b7280;
+  --max-width: 1100px;
+}
+
+*{box-sizing:border-box}
+body{
+  font-family: Inter, "Helvetica Neue", Arial, sans-serif;
+  line-height:1.6;
+  font-size:1.5rem;   /* 正文要求 */
+  color:#111;
+  background:#fff;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  margin:0;
+}
+
+/* Container */
+.container{
+  width:90%;
+  max-width:var(--max-width);
+  margin:0 auto;
+}
+
+/* ===== 顶部导航栏 ===== */
+.topbar{
+  background:var(--deep-blue);
+  color:#fff;
+  position:sticky;
+  top:0;
+  z-index:60;
+  box-shadow:0 6px 18px rgba(3,10,30,0.15);
+}
+.topbar-inner{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0.8rem 0;
+}
+.brand{
+  color:#fff;
+  text-decoration:none;
+  font-weight:700;
+  font-size:1.2rem;
+  letter-spacing:0.5px;
+}
+
+/* 桌面导航 */
+.nav-desktop{ display:flex; gap:1rem; }
+.nav-desktop a{
+  color:#fff;
+  text-decoration:none;
+  padding:0.35rem 0.6rem;
+  border-radius:6px;
+  transition:all .18s ease;
+  font-weight:400;
+}
+.nav-desktop a:hover{ background: rgba(255,255,255,0.15); transform:translateY(-2px); }
+.nav-desktop a.active{ background: rgba(255,255,255,0.25); }
+
+/* 汉堡按钮（移动端） */
+.hamburger{
+  display:none;
+  background:none;
+  border:0;
+  cursor:pointer;
+}
+.hamburger .ham-line{
+  display:block;
+  width:24px; height:2px;
+  background:#fff;
+  margin:5px 0;
+  border-radius:2px;
+  transition:all .25s ease;
+}
+
+/* 移动菜单 */
+.mobile-menu{
+  position:fixed; inset:0;
+  background:rgba(8,48,107,0.95);
+  display:none;
+  z-index:70;
+  align-items:center; justify-content:center;
+}
+.mobile-nav{ display:flex; flex-direction:column; gap:1.2rem; text-align:center; }
+.mobile-nav a{
+  color:#fff; font-size:1.5rem; font-weight:700;
+  text-decoration:none;
+}
+
+/* ===== Section 通用 ===== */
+.section{ padding:2.4rem 0; border-bottom:1px solid rgba(0,0,0,0.05); }
+.text-centered{ text-align:center; }
+.emphasis-title h2{ font-size:2.4rem; font-weight:800; color:var(--deep-blue); margin:0; }
+.subhead{ font-size:1.6rem; font-weight:700; color:var(--deep-blue); margin-bottom:1rem; }
+
+/* 两列布局 */
+.two-col{ display:flex; gap:2rem; align-items:flex-start; }
+.two-col .col{ flex:1; }
+.text-col p{ margin:0 0 1rem 0; }
+.para-title{ font-weight:700; color:var(--deep-blue); margin-top:0.5rem; }
+
+/* 图像块 */
+.image-col{ display:flex; align-items:center; justify-content:center; }
+.fig{ max-width:420px; text-align:center; }
+.fig img{
+  width:100%; height:auto; border-radius:8px;
+  box-shadow:0 6px 20px rgba(0,0,0,0.08);
+  transition:transform .25s ease;
+}
+.fig img:hover{ transform:scale(1.03); }
+.fig figcaption{ font-size:0.9rem; color:var(--muted); margin-top:0.4rem; }
+
+.center-fig {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  max-width: 720px;   /* 可按需要调整 */
+}
+
+.text-centered .fig {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* 纯文字大边距 */
+.wide-margin{ padding:3.5rem 0; max-width:900px; margin:auto; }
+
+/* References */
+.references .refs{ font-size:1rem; color:#111; }
+.references h4{ font-size:1.2rem; font-weight:700; color:#111; }
+
+/* Footer */
+.site-footer{
+  padding:1rem 0;
+  border-top:1px solid rgba(0,0,0,0.1);
+  background:#fafafa;
+  text-align:center;
+  font-size:0.95rem;
+  color:#444;
+}
+
+/* ===== 响应式 ===== */
+@media (max-width:900px){
+  .nav-desktop{ display:none; }
+  .hamburger{ display:block; }
+  .two-col{ flex-direction:column; gap:1.5rem; }
+  .fig{ max-width:100%; }
+  .emphasis-title h2{ font-size:1.8rem; }
+}

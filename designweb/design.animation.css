@@ -1,0 +1,28 @@
+/* ===========================================================
+   animations.css
+   - 页面淡入
+   - 链接/图片 hover 动画
+   - 移动端菜单滑入
+   - 汉堡动画
+   =========================================================== */
+
+/* 页面淡入动画 */
+.page-wrap{ animation: pageFadeIn .6s ease-out both; }
+@keyframes pageFadeIn {
+  from{opacity:0; transform:translateY(10px);}
+  to{opacity:1; transform:translateY(0);}
+}
+
+/* hover 效果 */
+a{ transition:color .18s ease, transform .18s ease; }
+a:hover{ transform:translateY(-2px); }
+.fig img:hover{ transform:scale(1.05); }
+
+/* 移动菜单滑入 */
+.mobile-menu.show{ display:flex; animation:slideUp .35s ease-out both; }
+@keyframes slideUp{ from{opacity:0; transform:translateY(10%);} to{opacity:1; transform:translateY(0);} }
+
+/* 汉堡按钮切换效果 */
+.hamburger.open .ham-line:nth-child(1){ transform:translateY(7px) rotate(45deg); }
+.hamburger.open .ham-line:nth-child(2){ opacity:0; }
+.hamburger.open .ham-line:nth-child(3){ transform:translateY(-7px) rotate(-45deg); }
