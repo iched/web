@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>图片序列动画 - 定格动画效果</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+            padding: 20px;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 900px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            color: white;
+        }
+        
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5rem;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        }
+        
+        .animation-box {
+            position: relative;
+            width: 100%;
+            height: 500px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+            margin-bottom: 30px;
+        }
+        
+        .image-frame {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .image-frame.active {
+            opacity: 1;
+        }
+        
+        .image-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .controls {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .progress-container {
+            width: 100%;
+            height: 10px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(to right, #4facfe, #00f2fe);
+            border-radius: 5px;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+        
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        button {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 50px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        button:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+        
+        button:active {
+            transform: translateY(1px);
+        }
+        
+        .speed-control {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 10px;
+        }
+        
+        .speed-control label {
+            font-size: 1rem;
+        }
+        
+        .speed-control input {
+            width: 150px;
+        }
+        
+        .indicators {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        .indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .indicator.active {
+            background: white;
+            transform: scale(1.3);
+        }
+        
+        .counter {
+            text-align: center;
+            margin-top: 15px;
+            font-size: 1.1rem;
+        }
+        
+        @media (max-width: 768px) {
+            .animation-box {
+                height: 400px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .animation-box {
+                height: 300px;
+            }
+            
+            h1 {
+                font-size: 1.7rem;
+            }
+            
+            button {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>图片序列动画效果</h1>
+        
+        <div class="animation-box">
+            <div class="image-frame active">
+                <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Mountain Landscape">
+            </div>
+            <div class="image-frame">
+                <img src="https://images.unsplash.com/photo-1439066615861-d1af74d74000?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Lake View">
+            </div>
+            <div class="image-frame">
+                <img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Forest">
+            </div>
+            <div class="image-frame">
+                <img src="https://images.unsplash.com/photo-1464822759849-e41c4c2604f5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Beach">
+            </div>
+            <div class="image-frame">
+                <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Northern Lights">
+            </div>
+            <div class="image-frame">
+                <img src="https://images.unsplash.com/photo-1501854140801-50d01698950b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Sunset">
+            </div>
+        </div>
+        
+        <div class="controls">
+            <div class="progress-container">
+                <div class="progress-bar"></div>
+            </div>
+            
+            <div class="buttons">
+                <button id="prevBtn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                        <path d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
+                    </svg>
+                    上一张
+                </button>
+                <button id="playPauseBtn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                        <path d="M10.804 8 5 4.633v6.734L10.804 8zm.792-.696a.802.802 0 0 1 0 1.392l-6.363 3.692C4.713 12.69 4 12.345 4 11.692V4.308c0-.653.713-.998 1.233-.696l6.363 3.692z"/>
+                    </svg>
+                    暂停
+                </button>
+                <button id="nextBtn">
+                    下一张
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                        <path d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+                    </svg>
+                </button>
+                <button id="restartBtn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                        <path d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"/>
+                        <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z"/>
+                    </svg>
+                    重新开始
+                </button>
+            </div>
+            
+            <div class="speed-control">
+                <label for="speed">播放速度:</label>
+                <input type="range" id="speed" min="1" max="10" value="5">
+                <span id="speedValue">中等</span>
+            </div>
+            
+            <div class="indicators">
+                <div class="indicator active"></div>
+                <div class="indicator"></div>
+                <div class="indicator"></div>
+                <div class="indicator"></div>
+                <div class="indicator"></div>
+                <div class="indicator"></div>
+            </div>
+            
+            <div class="counter">
+                <span id="currentIndex">1</span> / <span id="totalCount">6</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const imageFrames = document.querySelectorAll('.image-frame');
+            const indicators = document.querySelectorAll('.indicator');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const playPauseBtn = document.getElementById('playPauseBtn');
+            const restartBtn = document.getElementById('restartBtn');
+            const progressBar = document.querySelector('.progress-bar');
+            const speedControl = document.getElementById('speed');
+            const speedValue = document.getElementById('speedValue');
+            const currentIndexElement = document.getElementById('currentIndex');
+            const totalCountElement = document.getElementById('totalCount');
+            
+            let currentIndex = 0;
+            let isPlaying = true;
+            let animationInterval;
+            const totalImages = imageFrames.length;
+            
+            // 初始化
+            function init() {
+                totalCountElement.textContent = totalImages;
+                updateProgress();
+                startAnimation();
+                
+                // 事件监听
+                prevBtn.addEventListener('click', showPrevImage);
+                nextBtn.addEventListener('click', showNextImage);
+                playPauseBtn.addEventListener('click', togglePlayPause);
+                restartBtn.addEventListener('click', restartAnimation);
+                
+                speedControl.addEventListener('input', updateSpeed);
+                
+                // 为指示器添加点击事件
+                indicators.forEach((indicator, index) => {
+                    indicator.addEventListener('click', () => {
+                        goToImage(index);
+                    });
+                });
+            }
+            
+            // 显示下一张图片
+            function showNextImage() {
+                imageFrames[currentIndex].classList.remove('active');
+                currentIndex = (currentIndex + 1) % totalImages;
+                imageFrames[currentIndex].classList.add('active');
+                updateIndicators();
+                updateProgress();
+                updateCounter();
+            }
+            
+            // 显示上一张图片
+            function showPrevImage() {
+                imageFrames[currentIndex].classList.remove('active');
+                currentIndex = (currentIndex - 1 + totalImages) % totalImages;
+                imageFrames[currentIndex].classList.add('active');
+                updateIndicators();
+                updateProgress();
+                updateCounter();
+            }
+            
+            // 跳转到指定图片
+            function goToImage(index) {
+                imageFrames[currentIndex].classList.remove('active');
+                currentIndex = index;
+                imageFrames[currentIndex].classList.add('active');
+                updateIndicators();
+                updateProgress();
+                updateCounter();
+            }
+            
+            // 更新指示器
+            function updateIndicators() {
+                indicators.forEach((indicator, index) => {
+                    indicator.classList.toggle('active', index === currentIndex);
+                });
+            }
+            
+            // 更新进度条
+            function updateProgress() {
+                const progress = ((currentIndex + 1) / totalImages) * 100;
+                progressBar.style.width = `${progress}%`;
+            }
+            
+            // 更新计数器
+            function updateCounter() {
+                currentIndexElement.textContent = currentIndex + 1;
+            }
+            
+            // 开始动画
+            function startAnimation() {
+                const speed = getSpeedValue();
+                animationInterval = setInterval(showNextImage, speed);
+            }
+            
+            // 停止动画
+            function stopAnimation() {
+                clearInterval(animationInterval);
+            }
+            
+            // 切换播放/暂停
+            function togglePlayPause() {
+                if (isPlaying) {
+                    stopAnimation();
+                    playPauseBtn.innerHTML = `
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                            <path d="M10.804 8 5 4.633v6.734L10.804 8zm.792-.696a.802.802 0 0 1 0 1.392l-6.363 3.692C4.713 12.69 4 12.345 4 11.692V4.308c0-.653.713-.998 1.233-.696l6.363 3.692z"/>
+                        </svg>
+                        播放
+                    `;
+                } else {
+                    startAnimation();
+                    playPauseBtn.innerHTML = `
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                            <path d="M6 3.5a.5.5 0 0 1 .5.5v8a.5.5 0 0 1-1 0V4a.5.5 0 0 1 .5-.5zm4 0a.5.5 0 0 1 .5.5v8a.5.5 0 0 1-1 0V4a.5.5 0 0 1 .5-.5z"/>
+                        </svg>
+                        暂停
+                    `;
+                }
+                isPlaying = !isPlaying;
+            }
+            
+            // 重新开始动画
+            function restartAnimation() {
+                imageFrames[currentIndex].classList.remove('active');
+                currentIndex = 0;
+                imageFrames[currentIndex].classList.add('active');
+                updateIndicators();
+                updateProgress();
+                updateCounter();
+                
+                if (!isPlaying) {
+                    togglePlayPause();
+                }
+            }
+            
+            // 更新速度
+            function updateSpeed() {
+                const speed = speedControl.value;
+                let speedText;
+                
+                if (speed <= 3) {
+                    speedText = "慢速";
+                } else if (speed <= 7) {
+                    speedText = "中等";
+                } else {
+                    speedText = "快速";
+                }
+                
+                speedValue.textContent = speedText;
+                
+                if (isPlaying) {
+                    stopAnimation();
+                    startAnimation();
+                }
+            }
+            
+            // 获取速度值（转换为毫秒）
+            function getSpeedValue() {
+                const speed = speedControl.value;
+                // 将1-10的值转换为2000-200毫秒（2秒到0.2秒）
+                return 2200 - (speed * 200);
+            }
+            
+            // 初始化应用
+            init();
+        });
+    </script>
+</body>
+</html>

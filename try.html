@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>图片轮播动画</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            padding: 20px;
+        }
+        
+        .carousel-container {
+            width: 100%;
+            max-width: 900px;
+            position: relative;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            overflow: hidden;
+        }
+        
+        .carousel {
+            position: relative;
+            width: 100%;
+            height: 500px;
+            overflow: hidden;
+        }
+        
+        .slides {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+        }
+        
+        .slide {
+            min-width: 100%;
+            height: 100%;
+            position: relative;
+        }
+        
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .slide-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 30px;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            color: white;
+            transform: translateY(20px);
+            opacity: 0;
+            transition: all 0.5s ease 0.3s;
+        }
+        
+        .slide.active .slide-content {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        
+        .slide-content h3 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+        
+        .slide-content p {
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+        
+        .carousel-controls {
+            position: absolute;
+            bottom: 20px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10;
+        }
+        
+        .indicators {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .indicator.active {
+            background-color: white;
+            transform: scale(1.2);
+        }
+        
+        .nav-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+        
+        .nav-btn:hover {
+            background: rgba(255, 255, 255, 0.4);
+        }
+        
+        .prev {
+            left: 20px;
+        }
+        
+        .next {
+            right: 20px;
+        }
+        
+        .nav-btn svg {
+            width: 24px;
+            height: 24px;
+            fill: white;
+        }
+        
+        .autoplay-control {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            z-index: 10;
+        }
+        
+        .autoplay-control svg {
+            width: 20px;
+            height: 20px;
+            fill: white;
+        }
+        
+        @media (max-width: 768px) {
+            .carousel {
+                height: 400px;
+            }
+            
+            .slide-content h3 {
+                font-size: 1.4rem;
+            }
+            
+            .slide-content p {
+                font-size: 0.9rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .carousel {
+                height: 300px;
+            }
+            
+            .slide-content {
+                padding: 15px;
+            }
+            
+            .slide-content h3 {
+                font-size: 1.2rem;
+            }
+            
+            .slide-content p {
+                font-size: 0.8rem;
+            }
+            
+            .nav-btn {
+                width: 40px;
+                height: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="carousel-container">
+        <div class="carousel">
+            <div class="slides">
+                <div class="slide active">
+                    <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Mountain Landscape">
+                    <div class="slide-content">
+                        <h3>壮丽山景</h3>
+                        <p>探索雄伟山脉的壮丽景色，感受大自然的鬼斧神工。</p>
+                    </div>
+                </div>
+                <div class="slide">
+                    <img src="https://images.unsplash.com/photo-1439066615861-d1af74d74000?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Lake View">
+                    <div class="slide-content">
+                        <h3>宁静湖泊</h3>
+                        <p>清澈湖水倒映着蓝天白云，带来内心的平静与安宁。</p>
+                    </div>
+                </div>
+                <div class="slide">
+                    <img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Forest">
+                    <div class="slide-content">
+                        <h3>神秘森林</h3>
+                        <p>漫步于古老森林，感受大自然的生机与神秘。</p>
+                    </div>
+                </div>
+                <div class="slide">
+                    <img src="https://images.unsplash.com/photo-1464822759849-e41c4c2604f5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Beach">
+                    <div class="slide-content">
+                        <h3>金色沙滩</h3>
+                        <p>温暖的阳光，轻柔的海风，享受惬意的海滩时光。</p>
+                    </div>
+                </div>
+                <div class="slide">
+                    <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Northern Lights">
+                    <div class="slide-content">
+                        <h3>极光奇观</h3>
+                        <p>夜空中舞动的极光，如梦似幻的自然奇迹。</p>
+                    </div>
+                </div>
+            </div>
+            
+            <button class="nav-btn prev">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+                </svg>
+            </button>
+            <button class="nav-btn next">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
+                </svg>
+            </button>
+            
+            <button class="autoplay-control">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/>
+                </svg>
+            </button>
+            
+            <div class="carousel-controls">
+                <div class="indicators">
+                    <span class="indicator active"></span>
+                    <span class="indicator"></span>
+                    <span class="indicator"></span>
+                    <span class="indicator"></span>
+                    <span class="indicator"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const slides = document.querySelectorAll('.slide');
+            const indicators = document.querySelectorAll('.indicator');
+            const prevBtn = document.querySelector('.prev');
+            const nextBtn = document.querySelector('.next');
+            const autoplayBtn = document.querySelector('.autoplay-control');
+            const slidesContainer = document.querySelector('.slides');
+            
+            let currentSlide = 0;
+            let slideInterval;
+            let isPlaying = true;
+            const slideCount = slides.length;
+            
+            // 初始化轮播
+            function initCarousel() {
+                // 设置自动播放
+                startSlideShow();
+                
+                // 添加事件监听器
+                prevBtn.addEventListener('click', showPrevSlide);
+                nextBtn.addEventListener('click', showNextSlide);
+                
+                autoplayBtn.addEventListener('click', toggleAutoplay);
+                
+                // 为指示器添加点击事件
+                indicators.forEach((indicator, index) => {
+                    indicator.addEventListener('click', () => {
+                        goToSlide(index);
+                    });
+                });
+                
+                // 添加键盘导航
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'ArrowLeft') {
+                        showPrevSlide();
+                    } else if (e.key === 'ArrowRight') {
+                        showNextSlide();
+                    } else if (e.key === ' ') {
+                        e.preventDefault();
+                        toggleAutoplay();
+                    }
+                });
+            }
+            
+            // 显示下一张幻灯片
+            function showNextSlide() {
+                currentSlide = (currentSlide + 1) % slideCount;
+                updateCarousel();
+            }
+            
+            // 显示上一张幻灯片
+            function showPrevSlide() {
+                currentSlide = (currentSlide - 1 + slideCount) % slideCount;
+                updateCarousel();
+            }
+            
+            // 跳转到指定幻灯片
+            function goToSlide(index) {
+                currentSlide = index;
+                updateCarousel();
+            }
+            
+            // 更新轮播状态
+            function updateCarousel() {
+                // 更新幻灯片位置
+                slidesContainer.style.transform = `translateX(-${currentSlide * 100}%)`;
+                
+                // 更新活动状态
+                slides.forEach((slide, index) => {
+                    slide.classList.toggle('active', index === currentSlide);
+                });
+                
+                // 更新指示器
+                indicators.forEach((indicator, index) => {
+                    indicator.classList.toggle('active', index === currentSlide);
+                });
+            }
+            
+            // 开始自动播放
+            function startSlideShow() {
+                slideInterval = setInterval(showNextSlide, 5000);
+            }
+            
+            // 停止自动播放
+            function stopSlideShow() {
+                clearInterval(slideInterval);
+            }
+            
+            // 切换自动播放状态
+            function toggleAutoplay() {
+                if (isPlaying) {
+                    stopSlideShow();
+                    autoplayBtn.innerHTML = `
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/>
+                        </svg>
+                    `;
+                } else {
+                    startSlideShow();
+                    autoplayBtn.innerHTML = `
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/>
+                        </svg>
+                    `;
+                }
+                isPlaying = !isPlaying;
+            }
+            
+            // 初始化轮播
+            initCarousel();
+        });
+    </script>
+</body>
+</html>

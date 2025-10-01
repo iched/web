@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Antibiotic Nanozyme Research</title>
+    <style>
+        /* 基础样式 */
+        :root {
+            --primary-color: #1a237e;
+            --secondary-color: #283593;
+            --accent-color: #3949ab;
+            --light-blue: #e3f2fd;
+            --text-dark: #212121;
+            --text-light: #f5f5f5;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: #f9f9f9;
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        /* 导航栏样式 */
+        header {
+            background-color: var(--primary-color);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--shadow);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-item {
+            margin-left: 30px;
+        }
+
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            padding: 10px 5px;
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: #bbdefb;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: #bbdefb;
+            transition: var(--transition);
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* 汉堡菜单 */
+        .hamburger {
+            display: none;
+            cursor: pointer;
+        }
+
+        .bar {
+            display: block;
+            width: 25px;
+            height: 3px;
+            margin: 5px auto;
+            background-color: white;
+            transition: var(--transition);
+        }
+
+        /* 英雄区域 */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            margin-top: 70px;
+            padding: 0 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            opacity: 0;
+            animation: fadeInUp 1s forwards 0.5s;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            opacity: 0;
+            animation: fadeInUp 1s forwards 0.8s;
+        }
+
+        /* 内容区域 */
+        .content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 20px;
+        }
+
+        .section {
+            background-color: var(--light-blue);
+            border-radius: 10px;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: var(--shadow);
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s, transform 0.8s;
+        }
+
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section-content {
+            display: flex;
+            align-items: flex-start;
+            gap: 40px;
+        }
+
+        .section-text {
+            flex: 1;
+        }
+
+        .section-image {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .section-image img {
+            max-width: 100%;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+        }
+
+        .section h2 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+
+        .section p {
+            margin-bottom: 15px;
+        }
+
+        /* 轮播图样式 */
+        .carousel-container {
+            width: 100%;
+            margin-bottom: 15px;
+        }
+
+        .image-container {
+            position: relative;
+            width: 66%;
+            height: 390px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f0f0f0;
+            margin: 0 auto; /* 添加这行代码使容器居中 */
+        }
+
+        .image-frame {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .image-frame.active {
+            opacity: 1;
+        }
+
+        .image-frame img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            width: 865px;
+            height: 981px;
+        }
+
+        .placeholder {
+            width: 1000%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        .carousel-caption {
+            text-align: center;
+            font-size: 0.85rem;
+            color: #555;
+            line-height: 1.5;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        /* 参考文献区域 */
+        .references {
+            padding: 40px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .references h2 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .references ol {
+            list-style: decimal;
+            padding-left: 20px;
+        }
+
+        .references li {
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+        }
+
+        /* 页脚 */
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* 动画 */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+
+            .hamburger.active .bar:nth-child(2) {
+                opacity: 0;
+            }
+
+            .hamburger.active .bar:nth-child(1) {
+                transform: translateY(8px) rotate(45deg);
+            }
+
+            .hamburger.active .bar:nth-child(3) {
+                transform: translateY(-8px) rotate(-45deg);
+            }
+
+            .nav-menu {
+                position: fixed;
+                left: -100%;
+                top: 70px;
+                gap: 0;
+                flex-direction: column;
+                background-color: var(--primary-color);
+                width: 100%;
+                text-align: center;
+                transition: 0.3s;
+                box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+            }
+
+            .nav-menu.active {
+                left: 0;
+            }
+
+            .nav-item {
+                margin: 16px 0;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .section-content {
+                flex-direction: column;
+            }
+
+            .section-image {
+                order: -1;
+            }
+            
+            .image-container {
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <header>
+        <nav class="nav-container">
+            <div class="logo">Antibiotic Nanozyme</div>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="home.html" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="project.html" class="nav-link">Project</a></li>
+                <li class="nav-item"><a href="design.html" class="nav-link">Design</a></li>
+                <li class="nav-item"><a href="feasibility.html" class="nav-link">Feasibility</a></li>
+                <li class="nav-item"><a href="method.html" class="nav-link">Method</a></li>
+                <li class="nav-item"><a href="labbook.html" class="nav-link">Labbook</a></li>
+                <li class="nav-item"><a href="result.html" class="nav-link">Result</a></li>
+                <li class="nav-item"><a href="about.html" class="nav-link">About Us</a></li>
+                <li class="nav-item"><a href="future.html" class="nav-link">Future</a></li>
+                <li class="nav-item"><a href="elsi.html" class="nav-link">ELSI</a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- 英雄区域 -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Antibiotic Nanozyme</h1>
+            <p>A novel approach to combat antimicrobial resistance through molecular co-assembly</p>
+        </div>
+    </section>
+
+    <!-- 内容区域 -->
+    <main class="content">
+        <section class="section" id="section1">
+            <div class="section-content">
+                <div class="section-text">
+                    <h2>Antimicrobial Resistance (AMR) Challenge</h2>
+                    <p>Antimicrobial Resistance (AMR) stands as one of the most pressing global health challenges of our time, responsible for at least 1 million deaths annually worldwide <sup>[1]</sup>, a figure projected to rise steadily. Scientific investigations reveal that this crisis stems not only from the spread of resistant bacteria but also involves intricate underlying mechanisms: on one hand, bacteria rapidly share resistance genes via plasmids, where a handful of "superplasmids" can confer resistance to multiple first-line and even last-resort antibiotics <sup>[2]</sup>; on the other hand, surprisingly, some pathogens may even enhance their virulence by shedding certain resistance mechanisms, potentially increasing patient mortality <sup>[3]</sup>. Compounding this problem, nearly three decades have passed since the 1990s without the introduction of a truly novel class of antibiotics into clinical practice, leaving our antimicrobial arsenal critically depleted. Therefore, developing innovative strategies capable of breaking the current resistance deadlock has become an urgent imperative.</p>
+                </div>
+                <div class="section-image">
+                    <div class="carousel-container">
+                        <div class="image-container">
+                            <!-- 图片1 -->
+                            
+                            <div class="image-frame active">
+                                <div class="placeholder">
+                                    <img src="home.move/1.png">
+                                </div>
+                            </div>
+                            
+                            <!-- 图片2 -->
+                            <div class="image-frame">
+                                <div class="placeholder">
+                                    <img src="home.move/2.png">
+                                   
+                                </div>
+                            </div>
+                            
+                            <!-- 图片3 -->
+                            <div class="image-frame">
+                                <div class="placeholder">
+                                    <img src="home.move/3.png">
+                                </div>
+                            </div>
+                            
+                            <!-- 图片4 -->
+                            <div class="image-frame">
+                                <div class="placeholder">
+                                    <img src="home.move/4.png">
+                                   
+                                </div>
+                            </div>
+                            
+                            <!-- 图片5 -->
+                            <div class="image-frame">
+                                <div class="placeholder">
+                                    <img src="home.move/5.png">
+                                </div>
+                            </div>
+                            
+                            <!-- 图片6 -->
+                            <div class="image-frame">
+                                <div class="placeholder">
+                                    <img src="home.move/6.png">
+                                </div>
+                            </div>
+                            
+                            <!-- 图片7 -->
+                            <div class="image-frame">
+                                <div class="placeholder">
+                                    <img src="home.move/7.png">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="carousel-caption">
+                            Figure 1. Raw data and modelled estimates for the percentage of pathogen isolates that are resistant by country and territory, 2019. Meticillin-resistant Staphylococcus aureus (A), isoniazid and rifampicin co-resistant (excluding XDR) Mycobacterium tuberculosis (B), third-generation cephalosporin-resistant Escherichia coli (C), carbapenem-resistant Acinetobacter baumannii (D), fluoroquinolone-resistant E coli (E), carbapenem-resistant Klebsiella pneumoniae (F), and third-generation cephalosporin-resistant K pneumoniae (G). Locations with no data or modelled estimates are presented in white. XDR=extensively drug resistant. Figure 1 from [4]
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="section2">
+            <div class="section-content">
+                <div class="section-text">
+                    <h2>Nanozymes in AMR Combat</h2>
+                    <p>In the ongoing battle against antimicrobial resistance, nanozymes—a class of artificial nanomaterials endowed with natural enzyme-like catalytic activities—are emerging as a promising frontier with transformative potential<sup>[4]</sup>. These nanozymes can generate reactive oxygen species (ROS) and other antibacterial agents through catalytic reactions, directly damaging bacterial cell membranes, DNA, and other vital structures, thereby effectively eliminating a range of drug-resistant pathogens, including methicillin-resistant Staphylococcus aureus (MRSA) <sup>[5] [6]</sup>. More uniquely, their multi-mechanistic physicochemical bactericidal mode makes it difficult for bacteria to develop resistance, offering a new direction to overcome the current AMR crisis.</p>
+                    <p>Furthermore, nanozymes possess the ability to effectively penetrate and disrupt stubborn bacterial biofilms [6], a property critical for treating chronic and persistent infections. It has been demonstrated that when nanozymes are immobilized on medical dressings, they can eliminate over 90% of Candida albicans within just 10 minutes <sup>[4]</sup>, underscoring their highly efficient antimicrobial activity and practical application potential. As such, nanozymes are regarded as a powerful tool in confronting the challenges of the "post-antibiotic era"<sup>[6]</sup> .</p>
+                </div>
+                <div class="section-image">
+                    <!-- 图片占位符 -->
+                    <img src="home/home.2.png" alt="Fig. 2. Schematic representation of catalytic activity" style="width: 459px; height: 394px; background-color: #e0e0e0; display: block; margin: 0 auto;">
+                       
+                    <p><small>Fig. 2. Antimicrobial activity and MoA of Ni-IH-7 nanotubes against C. albicans</small></p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="section3">
+            <div class="section-content">
+                <div class="section-text">
+                    <h2>Novel Antibiotic Nanozyme Design</h2>
+                    <!-- 字体修改 -->
+                    <p>Here, we designed a novel class of antibiotic nanozymes through the molecular co-assembly of antibiotics with hemin chloride to combat antimicrobial resistance.<sup>[9]</sup></p>
+                    <p>The synthesis of these antibiotic nanozymes demonstrates remarkable versatility. We selected a series of representative antibiotics, including Gentamicin (GM), Fluconazole (FCZ), and virtually screened molecules such as Rapamycin (RAPA) and Ceftriaxone. Each of these antibiotics successfully co-assembled with hemin chloride via axial coordination and copolymerization, forming stable antibiotic nanozyme.</p>
+                </div>
+                <div class="section-image">
+                    <!-- 图片占位符 -->
+                    <img src="home/home.3.jpg" alt="Fig. 3. Assembly of antibiotics and hemin" style="width: 325px; height: 300px; background-color: #e0e0e0; display: block; margin: 0 auto;">
+                        
+                    <p><small>Fig. 3. Schematic diagram of the assembly of various antibiotics and hemin into antibiotic nanozymes</small></p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="section4">
+            <div class="section-content">
+                <div class="section-text">
+                    <h2>Multifaceted Antibacterial Mechanisms</h2>
+                    <p>The antibiotic nanozymes exert potent bactericidal effects through the following multifaceted mechanisms<sup>[10]</sup>:</p>
+                    <ol>
+                        <li>The antibiotic nanozymes effectively degrade bacterial biofilms.<sup>[11]</sup></li>
+                        <li>Possessing peroxidase (POD)-like activity, the antibiotic nanozymes induce oxidative damage to bacteria.<sup>[12]</sup></li>
+                        <li>The antibiotic nanozymes function as ferroptosis inducers, triggering bacterial ferroptosis.</li>
+                        <li>Within bacterial cells, the nanozymes release the constituent antibiotics, achieving synergistic antibacterial action.</li>
+                    </ol>
+                </div>
+                <div class="section-image">
+                    <!-- 图片占位符 -->
+                    <img src="https://github.com/iched/images/blob/main/home.fig.4.png?raw=true" alt="Fig. 4. Antibacterial mechanism of nanozymes" style="width: 396px; height: 350px; background-color: #e0e0e0; display: block; margin: 0 auto;">
+                        
+                    <p><small>Fig. 4. Schematic diagram of the antibacterial mechanism of nanozymes.</small></p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 参考文献 -->
+    <section class="references">
+        <h2>References</h2>
+            <ul style="list-style-type: none; padding-left: 0;">
+                <li style="margin-bottom: 10px;">[1]Aminov RI. A brief history of the antibiotic era: lessons learned and challenges for the future. Front Microbiol. 2010;1:134. Published 2010 Dec 8. doi:10.3389/fmicb.2010.00134</li>
+                <li style="margin-bottom: 10px;">[2]Antimicrobial Resistance Collaborators. Global burden of bacterial antimicrobial resistance in 2019: a systematic analysis. Lancet. 2022;399(10325):629-655. doi:10.1016/S0140-6736(21)02724-0</li>
+                <li style="margin-bottom: 10px;">[3]Gao L, Zhuang J, Nie L, et al. Intrinsic peroxidase-like activity of ferromagnetic nanoparticles. Nat Nanotechnol. 2007;2(9):577-583. doi:10.1038/nnano.2007.260</li>
+                <li style="margin-bottom: 10px;">[4]Gao F, Shao T, Yu Y, Xiong Y, Yang L. Surface-bound reactive oxygen species generating nanozymes for selective antibacterial action. Nat Commun. 2021;12(1):745. Published 2021 Feb 2. doi:10.1038/s41467-021-20965-3</li>
+                <li style="margin-bottom: 10px;">[5]Zhang X, Chen X, Zhao Y. Nanozymes: Versatile Platforms for Cancer Diagnosis and Therapy. Nanomicro Lett. 2022;14(1):95. Published 2022 Apr 6. doi:10.1007/s40820-022-00828-2</li>
+                <li style="margin-bottom: 10px;">[6]Soetaert F, Korangath P, Serantes D, Fiering S, Ivkov R. Cancer therapy with iron oxide nanoparticles: Agents of thermal and immune therapies. Adv Drug Deliv Rev. 2020;163-164:65-83. doi:10.1016/j.addr.2020.06.025</li>
+                <li style="margin-bottom: 10px;">[7]Panáček A, Kvítek L, Smékalová M, et al. Bacterial resistance to silver nanoparticles and how to overcome it. Nat Nanotechnol. 2018;13(1):65-71. doi:10.1038/s41565-017-0013-y</li>
+                <li style="margin-bottom: 10px;">[8]Rezayat SM, Falahati M. Nanozymes with intrinsic peroxidase-like activities. J Mol Liq. 2019;278:130-144. doi:10.1016/j.molliq.2018.12.004</li>
+                <li style="margin-bottom: 10px;">[9]Liu H, Yang Y, Wang P, et al. Microenvironment-activated nanozyme-armed bacteriophages efficiently combat bacterial infection. Adv Mater. 2023;35(51):2307132. doi:10.1002/adma.202307132</li>
+                <li style="margin-bottom: 10px;">[11]Yang Y, Wang Y, Zhang Y, et al. Nitrogen vacancy modulation of tungsten nitride peroxidase-mimetic activity for bacterial infection therapy. ACS Nano. 2024. Published online August 28, 2024. doi:10.1021/acsnano.4c07856</li>
+                <li style="margin-bottom: 10px;">[12]Jia J, Zou Y, Liu Y, et al. A multifunctional nanoplatform with "disruption and killing" function to improve the efficiency of conventional antibiotics for biofilm eradication. J Mater Sci Technol. 2024;192:20-33. doi:10.1016/j.jmst.2024.03.060</li>
+                <li style="margin-bottom: 10px;">[13]Liu Y, Zhang J, Li B, et al. Advanced nanozymes possess peroxidase-like catalytic activities in biomedical and antibacterial fields: review and progress. J Mater Chem B. 2023;11(48):11514-11539. doi:10.1039/D3TB02123K</li>
+            </ul>
+    </section>
+
+    <!-- 页脚 -->
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2024 Antibiotic Nanozyme Research Project. All rights reserved.</p>
+            <p>Contact: research@antibioticnanozyme.org</p>
+        </div>
+    </footer>
+
+    <script>
+        // 汉堡菜单切换
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        // 关闭移动端菜单当点击链接时
+        document.querySelectorAll('.nav-link').forEach(n => n.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            navMenu.classList.remove('active');
+        }));
+
+        // 滚动动画
+        const sections = document.querySelectorAll('.section');
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+
+        // 简单的视差滚动效果
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero');
+            hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+        });
+
+        // 轮播图功能
+        document.addEventListener('DOMContentLoaded', function() {
+            const imageFrames = document.querySelectorAll('.image-frame');
+            let currentIndex = 0;
+            const totalImages = imageFrames.length;
+            
+            // 自动播放函数
+            function startAutoPlay() {
+                setInterval(() => {
+                    // 隐藏当前图片
+                    imageFrames[currentIndex].classList.remove('active');
+                    
+                    // 移动到下一张图片
+                    currentIndex = (currentIndex + 1) % totalImages;
+                    
+                    // 显示新图片
+                    imageFrames[currentIndex].classList.add('active');
+                }, 1000); // 每1秒切换一次图片
+            }
+            
+            // 开始自动播放
+            startAutoPlay();
+        });
+    </script>
+</body>
+</html>
