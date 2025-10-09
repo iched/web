@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>古风团队介绍</title>
+    <style>
+        /* 基础样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: "楷体", "STKaiti", serif;
+            background-color: #f7f3e9;
+            color: #5c4b37;
+            line-height: 1.6;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+        }
+        
+        h1 {
+            text-align: center;
+            margin: 30px 0;
+            color: #8b4513;
+            font-size: 2.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* 团队介绍卡片通用样式 */
+        .team-card {
+            width: 300px;
+            background-color: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+        }
+        
+        .team-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .member-img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            display: block;
+        }
+        
+        .member-info {
+            padding: 20px;
+        }
+        
+        .member-name {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: #8b4513;
+            text-align: center;
+            border-bottom: 1px dashed #d9c7a7;
+            padding-bottom: 10px;
+        }
+        
+        .member-email, .member-motto {
+            margin: 10px 0;
+            font-size: 0.95rem;
+        }
+        
+        .member-email {
+            color: #a67c52;
+        }
+        
+        .member-motto {
+            font-style: italic;
+            color: #7a6a52;
+            text-align: center;
+            padding: 10px;
+            background-color: #f9f5eb;
+            border-radius: 4px;
+        }
+        
+        /* 设计一：卷轴风格 */
+        .scroll-style {
+            border: 8px solid transparent;
+            border-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect x="0" y="0" width="100" height="100" fill="%23d9c7a7" stroke="%238b4513" stroke-width="2"/></svg>') 30 stretch;
+            background: linear-gradient(to bottom, #f9f5eb, #f0e6d2);
+            position: relative;
+        }
+        
+        .scroll-style::before, .scroll-style::after {
+            content: "";
+            position: absolute;
+            width: 30px;
+            height: 100%;
+            background-color: #8b4513;
+            top: 0;
+            z-index: -1;
+        }
+        
+        .scroll-style::before {
+            left: -30px;
+            border-radius: 15px 0 0 15px;
+        }
+        
+        .scroll-style::after {
+            right: -30px;
+            border-radius: 0 15px 15px 0;
+        }
+        
+        /* 设计二：窗棂风格 */
+        .window-style {
+            border: 2px solid #8b4513;
+            position: relative;
+            background-color: #fffaf0;
+        }
+        
+        .window-style::before {
+            content: "";
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            right: 5px;
+            bottom: 5px;
+            border: 1px solid #d9c7a7;
+            pointer-events: none;
+        }
+        
+        .window-style .member-img {
+            border-bottom: 2px solid #8b4513;
+        }
+        
+        .window-style .member-info {
+            background: linear-gradient(to bottom, #fffaf0, #f9f5eb);
+        }
+        
+        /* 设计三：竹简风格 */
+        .bamboo-style {
+            background: linear-gradient(to bottom, #f0e6d2, #e8d9c0);
+            border-radius: 0;
+            position: relative;
+            padding: 10px 0;
+        }
+        
+        .bamboo-style::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(to right, transparent 49%, rgba(139, 69, 19, 0.1) 50%, transparent 51%),
+                linear-gradient(to right, transparent 49%, rgba(139, 69, 19, 0.1) 50%, transparent 51%);
+            background-size: 20px 20px;
+            background-position: 0 0, 10px 10px;
+            z-index: 1;
+            pointer-events: none;
+        }
+        
+        .bamboo-style .member-img {
+            margin: 0 10px;
+            border: 1px solid #8b4513;
+            height: 220px;
+        }
+        
+        .bamboo-style .member-info {
+            position: relative;
+            z-index: 2;
+            background-color: rgba(255, 250, 240, 0.8);
+            margin: 0 10px;
+            border: 1px solid #8b4513;
+        }
+        
+        /* 响应式调整 */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .team-card {
+                width: 90%;
+                max-width: 350px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>团队风采</h1>
+    
+    <div class="container">
+        <!-- 设计四：印章风格 -->
+        <div class="team-card seal-style">
+            <div class="seal">团队<br>之印</div>
+            <div class="member-img-container">
+                <img src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="团队成员" class="member-img">
+            </div>
+            <div class="member-info">
+                <h3 class="member-name">欧阳修</h3>
+                <p class="member-email"><i class="fas fa-envelope"></i> ouyangxiu@example.com</p>
+                <p class="member-motto">"醉翁之意不在酒，在乎山水之间也"</p>
+            </div>
+        </div>
+        
+        <!-- 设计二：窗棂风格 -->
+        <div class="team-card window-style">
+            <img src="https://via.placeholder.com/300x250/f0e6d2/5c4b37?text=成员照片" alt="团队成员" class="member-img">
+            <div class="member-info">
+                <h3 class="member-name">李清照</h3>
+                <p class="member-email">liqingzhao@example.com</p>
+                <p class="member-motto">"生当作人杰，死亦为鬼雄"</p>
+            </div>
+        </div>
+        
+       <!-- 设计五：山水画风格 -->
+        <div class="team-card landscape-style">
+            <div class="member-img-container">
+                <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="团队成员" class="member-img">
+            </div>
+            <div class="member-info">
+                <h3 class="member-name">王维</h3>
+                <p class="member-email"><i class="fas fa-envelope"></i> wangwei@example.com</p>
+                <p class="member-motto">"行到水穷处，坐看云起时"</p>
+            </div>
+        </div>
+        
+    </div>
+</body>
+</html>
