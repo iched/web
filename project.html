@@ -4,533 +4,234 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Antibiotic Nanozyme Project</title>
-    <style>
-        /* ===== CSS样式区域 ===== */
-        
-        /* 重置样式 */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Arial', sans-serif;
-        }
-        
-        body {
-            background-color: #ffffff;
-            color: #333;
-            line-height: 1.6;
-        }
-        
-        /* 导航栏样式 */
-        header {
-            background-color: #1a365d;
-            color: white;
-            padding: 1rem 2rem;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            transition: background-color 0.3s ease;
-        }
-        
-        .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: white;
-        }
-        
-        .nav-menu {
-            display: flex;
-            list-style: none;
-        }
-        
-        .nav-menu li {
-            margin-left: 2rem;
-        }
-        
-        .nav-menu a {
-            color: white;
-            text-decoration: none;
-            font-weight: 500;
-            padding: 0.5rem 0;
-            position: relative;
-            transition: color 0.3s ease;
-        }
-        
-        .nav-menu a:hover {
-            color: #63b3ed;
-        }
-        
-        .nav-menu a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background-color: #63b3ed;
-            transition: width 0.3s ease;
-        }
-        
-        .nav-menu a:hover::after {
-            width: 100%;
-        }
-        
-        .hamburger {
-            display: none;
-            cursor: pointer;
-            flex-direction: column;
-            justify-content: space-between;
-            height: 21px;
-        }
-        
-        .hamburger span {
-            display: block;
-            height: 3px;
-            width: 25px;
-            background-color: white;
-            border-radius: 2px;
-            transition: all 0.3s ease;
-        }
-        
-        .hamburger.active span:nth-child(1) {
-            transform: rotate(45deg) translate(5px, 5px);
-        }
-        
-        .hamburger.active span:nth-child(2) {
-            opacity: 0;
-        }
-        
-        .hamburger.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(7px, -6px);
-        }
-        
-        /* 主内容区域样式 */
-        main {
-            margin-top: 80px;
-            padding: 2rem;
-            max-width: 1200px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        
-        section {
-            margin-bottom: 4rem;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
-            padding: 2rem;
-            background: #fff;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-        }
-        
-        section.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        .section-title {
-            color: #2c5282;
-            font-size: 2rem;
-            margin-bottom: 1.5rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 2px solid #e2e8f0;
-        }
-        
-        .content-with-image {
-            display: flex;
-            align-items: flex-start;
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-        
-        .text-content {
-            flex: 1;
-        }
-        
-        .image-content {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-            align-items: center;
-            text-align: center;
-            background-color: #ffffff;
-            padding: 1rem;
-            border-radius: 8px;
-        }
-        
-        /* 新的section-image样式 */
-        .section-image {
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin: 1.5rem 0;
-        }
-        
-        .section-image img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 4px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-        
-        .section-image-caption {
-            font-size: 0.9rem;
-            color: #666;
-            font-style: italic;
-            text-align: center;
-            width: 100%;
-            padding: 0.5rem;
-            background-color: #ffffff;
-            margin-top: 0.5rem;
-        }
-        
-        p {
-            line-height: 1.6;
-            margin-bottom: 1rem;
-            color: #4a5568;
-        }
-        
-        /* Goals部分图片纵向排列 */
-        .goals-images {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 1.5rem;
-            width: 100%;
-        }
-        
-        .goal-image-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: 100%;
-            max-width: 500px;
-        }
-        
-        /* 参考文献样式 */
-        .references {
-            margin-top: 4rem;
-            padding-top: 2rem;
-            border-top: 1px solid #e2e8f0;
-        }
-        
-        .references h2 {
-            color: #2c5282;
-            margin-bottom: 1.5rem;
-        }
-        
-        .reference-list {
-            font-size: 0.9rem;
-            color: #4a5568;
-            line-height: 1.5;
-        }
-        
-        .reference-list p {
-            margin-bottom: 0.8rem;
-        }
-        
-        /* 页脚样式 */
-        footer {
-            background-color: #1a365d;
-            color: white;
-            padding: 2rem;
-            text-align: center;
-        }
-        
-        /* 响应式设计 */
-        @media (max-width: 768px) {
-            .hamburger {
-                display: flex;
-            }
-            
-            .nav-menu {
-                position: fixed;
-                top: 70px;
-                right: -100%;
-                flex-direction: column;
-                background-color: #1a365d;
-                width: 100%;
-                text-align: center;
-                transition: 0.3s;
-                box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
-                padding: 2rem 0;
-            }
-            
-            .nav-menu.active {
-                right: 0;
-            }
-            
-            .nav-menu li {
-                margin: 1.5rem 0;
-            }
-            
-            .content-with-image {
-                flex-direction: column;
-            }
-            
-            .image-content {
-                order: -1;
-            }
-            
-            section {
-                padding: 1rem;
-            }
-            
-            main {
-                padding: 1rem;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="animation.css">
 </head>
 <body>
-    <!-- ===== HTML结构区域 ===== -->
-    
     <!-- 顶部导航栏 -->
-    <header>
-        <div class="nav-container">
-            <div class="logo">Antibiotic Nanozyme Project</div>
-            <ul class="nav-menu">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="project.html" class="active">Project</a></li>
-                <li><a href="design.html">Design</a></li>
-                <li><a href="feasibility.html">Feasibility</a></li>
-                <li><a href="method.html">Method</a></li>
-                <li><a href="labbook.html">Labbook</a></li>
-                <li><a href="result.html">Result</a></li>
-                <li><a href="about.html">About Us</a></li>
-                <li><a href="future.html">Future</a></li>
-                <li><a href="elsi.html">ELSI</a></li>
-            </ul>
-            <div class="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
+    <header class="topbar">
+        <div class="topbar-inner container">
+            <!-- 品牌链接 -->
+            
+            <div class="nav-desktop">
+                <a href="index.html">Home</a>
+                <a href="project.html" class="active">Project</a>
+                <a href="design.html">Design</a>
+                <a href="feasibility.html">Feasibility</a>
+                <a href="method.html">Method</a>
+                
+                <a href="result.html">Result</a>
+                <a href="about.html">About Us</a>
+                <a href="future.html">Future</a>
+                <a href="elsi.html">ELSI</a>
             </div>
+            <!-- 汉堡菜单按钮 -->
+            <button class="hamburger">
+                <span class="ham-line"></span>
+                <span class="ham-line"></span>
+                <span class="ham-line"></span>
+            </button>
         </div>
     </header>
 
+    <!-- 移动菜单 -->
+    <div class="mobile-menu">
+        <div class="mobile-nav">
+            <a href="index.html">Home</a>
+            <a href="project.html">Project</a>
+            <a href="design.html">Design</a>
+            <a href="feasibility.html">Feasibility</a>
+            <a href="method.html">Method</a>
+           
+            <a href="result.html">Result</a>
+            <a href="about.html">About Us</a>
+            <a href="future.html">Future</a>
+            <a href="elsi.html">ELSI</a>
+        </div>
+    </div>
+
     <!-- 主内容区域 -->
     <main>
-        <!-- Background部分 -->
-        <section id="background">
-            <h2 class="section-title">Background</h2>
-            <div class="content-with-image">
-                <div class="text-content">
-                    <p>Antibiotic resistance represents a significant and growing threat to global public health[1]. Current strategies for antibiotic modification suffer from limitations such as limited universality and single mechanistic actions[2]. A well-known mechanism for the development of resistance to multiple antibiotics involves a decrease in microbial redox levels, which leads to a dormant state and a reduction in the uptake of antibiotics. Aditionally, the robust polymer matrix of biofilms further shields microorganisms by restricting antibiotic penetration. Previous study has reported that disruption of redox homeostasis can effectively eliminate the "dormant bodies" of microorganisms and disrupt the integrity of biofilms[3]. Moreover, nanozymes exhibit enzyme-mimetic catalytic activity and modulate microbial redox homeostasis through the generation of reactive oxygen species (ROS)[4-6]. Therefore, we can modulate the intracellular redox homeostasis of microorganisms to enhance their uptake of antibiotics by designing antibiotic nanozymes.</p>
+        <div class="container">
+            <!-- Background部分 -->
+             <section class="section">
+                <div class="emphasis-title">
+                    <h2>Background</h2>
                 </div>
-                <div class="image-content">
-                    <!-- 图片1位置 -->
-                    <div class="section-image">
-                        <img src="project/project.1.png" alt="Figure 1.1 Schematic diagram of the antibiofilm mechanism">
-                        <p class="section-image-caption">Figure 1.1 Schematic diagram of the antibiofilm mechanism. From Biofilm-Responsive Nano-Antibiotics for Degradation of Extracellular Polymeric Substances Matrix and Reduction of Pathogenicity Against Drug-Resistant Bacterial Infections</p>
+                <div class="wide-margin">
+                    <p>Antibiotic resistance poses a significant and growing threat to global public health<sup>[1]</sup>. Current strategies for antibiotic modification are limited by insufficient broad-spectrum applicability and an overreliance on single mechanisms of action<sup>[2]</sup>. A well-established mechanism underlying the development of multidrug resistance in microorganisms involves a reduction in intracellular redox activity, leading to a metabolically dormant state and decreased antibiotic uptake. Additionally, the robust extracellular polymeric matrix of biofilms acts as a physical barrier that limits antibiotic penetration. Previous studies have demonstrated that disrupting microbial redox homeostasis can effectively eradicate dormant microbial cells and compromise biofilm structural integrity<sup>[3]</sup>. Furthermore, nanozymes possess enzyme-mimetic catalytic properties and are capable of modulating microbial redox balance through the generation of reactive oxygen species (ROS)<sup>[4-6]</sup>. Therefore, by designing antibiotic nanozymes, it is feasible to modulate intracellular redox homeostasis in microorganisms, thereby enhancing their susceptibility to antibiotics.</p>
+                </div>
+            </section>
+
+            <section class="section">
+                <div class="text-centered">
+                <figure class="fig center-fig">
+                    <img src="project/project.1.png" alt="Figure from [7]">
+                    <figcaption>Figure from [7]</figcaption>
+                </figure>
+                </div>
+            </section>
+
+            <!-- Problem Statement部分 -->
+             <section class="section">
+                <div class="emphasis-title">
+                    <h2>Problem Statement</h2>
+                </div>
+                <div class="wide-margin">
+                    <p>Antimicrobial resistance (AMR), which arises from bacterial adaptations that diminish the efficacy of therapeutic agents, has emerged as a critical global public health threat in the 21st century. According to the Review on Antimicrobial Resistance commissioned by the UK government, AMR could result in up to 10 million deaths annually by 2050, with cumulative economic losses projected to reach $100 trillion<sup>[8]</sup>. A comprehensive statistical analysis of data<sup>[9]</sup> from 204 countries and territories in 2019, encompassing 23 pathogens and 88 pathogen-drug combinations, revealed that approximately 4.95 million deaths were associated with antibiotic-resistant bacterial infections across these combinations. Among these, 1.27 million deaths were directly attributable to antimicrobial resistance. A comparative analysis with all global underlying causes of death in 2019 indicates that if these infections had remained susceptible to treatment, AMR would have ranked as the third leading cause of death worldwide at the GBD Level 3 category, exceeded only by ischemic heart disease and stroke. These results affirm that antimicrobial resistance constitutes a urgent global health crisis, underscoring the imperative to develop innovative antibacterial therapies and reverse resistance trends.</p>
+                </div>
+            </section>
+
+            <section class="section">
+                <div class="text-centered">
+                <figure class="fig center-fig">
+                    <img src="project/2.png" alt="Figure. 2. All-age rate of deaths attributable to and associated with bacterial antimicrobial resistance by GBD region, 2019.GBD=Global Burden of Diseases, Injuries, and Risk Factors Study.">
+                    <figcaption>Figure.2.Global deaths (counts) attributable to and associated with bacterial antimicrobial resistance by infectious syndrome</figcaption>
+                </figure>
+                </div>
+            </section>
+
+        
+            <!-- Current Challenges部分 -->
+            <section class="section">
+                <div class="emphasis-title">
+                    <h2>Current Challenges</h2>
+                </div>
+                <div class="wide-margin">
+                    <p>The current landscape of AMR is highly complex and dynamically evolving. Among the diverse resistance mechanisms, reduced membrane permeability, which results in decreased intracellular antibiotic accumulation, constitutes one of the most critical and widespread strategies employed by bacteria. In response to major resistance determinants such as reduced membrane permeability, overexpression of efflux pumps, and enzymatic antibiotic inactivation, researchers have developed several innovative antibiotic modification strategies. These include novel β-lactamase inhibitors, siderophore-antibiotic conjugates, antibody-antibiotic conjugates, and combination therapies incorporating proton pump inhibitors. Despite demonstrating translational potential and efficacy against specific resistance mechanisms, these strategies face several fundamental limitations. First, their continued reliance on membrane protein-mediated transport systems creates inherent vulnerability to resistance evolution. Second, structural modifications of antibiotic scaffolds or antibody conjugation approaches often involve high production costs and exhibit limited applicability across diverse bacterial pathogens. Third, mono-mechanistic interventions frequently yield insufficient efficacy in reversing established resistance phenotypes. To address these challenges, we propose the development of antibiotic nanozyme that employ coordinated multimodal antibacterial mechanisms. This integrated strategy is designed not only to counteract existing resistance, but also to prevent the emergence of new resistance mutations. By simultaneously targeting multiple bacterial vulnerabilities, our approach offers a promising and sustainable therapeutic paradigm for combating antimicrobial resistance.</p>
+                </div>
+            </section>
+
+            <section class="section">
+                <div class="text-centered">
+                <figure class="fig center-fig">
+                    <img src="project/current challenges.png" alt="Figure from [10]">
+                    <figcaption>Figure.3.</figcaption>
+                </figure>
+                </div>
+            </section>
+
+            <!-- Solutions部分 -->
+            <section class="section">
+                <div class="emphasis-title">
+                    <h2>Proposed Solutions</h2>
+                </div>
+                <div class="two-col">
+                    <div class="col text-col">
+                        <p>As a promising class of catalytic nanomaterials, nanozymes provide a novel approach to combat bacterial resistance. Our strategy involves engineering nanozymes to disrupt resistance mechanisms, thereby resensitizing resistant bacteria and potentiating the activity of conventional antibiotics.</p>
+                </div>
+                <div class="col image-col">
+                    <div class="fig">
+                        <img src="project/3.png" alt="Figure from [10]">
+                        <figcaption>Figure from [10]</figcaption>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
+                
+             <section class="section">
+                <div class="wide-margin">
+                    <p>A pivotal aspect of this strategy lies in the judicious selection of an appropriate antibiotic agent. Our primary focus is on hemin, an iron-containing porphyrin compound. Hemin functions as a critical cofactor in numerous enzymatic reactions in vivo and plays a key role in the transport of gaseous molecules. Its catalytic activity is principally regulated by histidine-modulated axial coordination, with the intrinsic porphyrin structure forming the basis for its enzyme-mimetic properties<sup>[11-12]</sup>. Notably, many antibiotic molecules possess functional groups capable of effectively displacing the chloride atom in ferric hemin (Fe(III)-hemin), serving as axial ligands to the iron-N<sub>4</sub> plane, forming a pentacoordinate structural unit<sup>[13]</sup>. These structural characteristics enable the self-assembly of nanoparticle aggregates through various non-covalent interactions, including hydrogen bonding, salt bridges, π-π stacking, and cation-π interactions, resulting in the formation of an antibiotic-nanozyme complex<sup>[14]</sup>.</p>
+                </div>
+            </section>
 
-        <!-- Problem Statement部分 -->
-        <section id="problem-statement">
-            <h2 class="section-title">Problem Statement</h2>
-            <div class="content-with-image">
-                <div class="text-content">
-                    <p>Antimicrobial resistance (AMR) occurs when bacteria undergo changes that reduce the effectiveness of therapeutic agents used to treat infections, and has emerged as one of the major public health threats of the 21st century. According to the Review on Antimicrobial Resistance commissioned by the UK government, AMR could cause up to 10 million deaths annually by 2050, with associated economic costs soaring to $100 trillion[7].A statistical analysis of data[1] from 204 countries and territories worldwide in 2019, covering 23 pathogens and 88 pathogen-drug combinations, revealed that an estimated 4.95 million (95% UI 3.62--6.57) deaths were associated with resistant bacterial infections across these 88 pathogen-drug pairs. Among these, 1.27 million (0.91--1.71) deaths were directly attributable to antimicrobial resistance. When compared to all underlying causes of death globally in 2019, had these infections been non-resistant, AMR would rank as the third leading cause of death at the Global Burden of Disease (GBD) Level 3, surpassed only by ischemic heart disease and stroke. These findings underscore that bacterial antimicrobial resistance has become a major global health challenge, highlighting the critical importance of developing novel antibacterial agents and reversing drug resistance.</p>
+            <section class="section">
+                <div class="text-centered">
+                <figure class="fig center-fig">
+                    <img src="project/4.png" alt="Figure. 4. Diagram of binding hemin to antibiotics (Antibiotic structure using gentamicin as an example)">
+                    <figcaption>Figure. 4. Diagram of binding hemin to antibiotics (Antibiotic structure using gentamicin as an example)</figcaption>
+                </figure>
                 </div>
-                <div class="image-content">
-                    <!-- 图片2位置 -->
-                    <div class="section-image">
-                        <img src="project/project.2.png" alt="Figure 1.2 All-age rate of deaths attributable to and associated with bacterial antimicrobial resistance by GBD region, 2019">
-                        <p class="section-image-caption">Figure 1.2 All-age rate of deaths attributable to and associated with bacterial antimicrobial resistance by GBD region, 2019. GBD=Global Burden of Diseases, Injuries, and Risk Factors Study.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Challenges部分 -->
-        <section id="challenges">
-            <h2 class="section-title">Challenges</h2>
-            <div class="text-content">
-                <p>The current landscape of antimicrobial resistance is highly complex and dynamically evolving. Among the various resistance mechanisms, reduced membrane permeability---leading to diminished intracellular antibiotic accumulation---represents one of the most critical and widespread strategies employed by bacteria. In response to key resistance determinants such as diminished membrane permeability, overexpression of efflux pumps, and enzymatic antibiotic inactivation, researchers have developed several innovative antibiotic modification strategies. Notable approaches include the design of novel β-lactamase inhibitors, the development of siderophore-antibiotic conjugates, antibody-antibiotic conjugates, and combination therapies with proton pump inhibitors.While current strategies for antibiotic modification demonstrate promising potential for clinical application and can effectively counter certain aspects of antimicrobial resistance, several critical limitations remain: reliance on membrane protein-mediated transport still carries inherent risks of resistance development; high production costs and limited generalizability (e.g., structural modification of antibiotic molecules or antibody conjugation) hinder broad implementation; and approaches relying solely on a single mechanism to reverse bacterial resistance often exhibit limited efficacy.Therefore, our team endeavors to construct antibiotic-nanozyme conjugates that employ multimodal antibacterial mechanisms. This strategy is designed not only to reverse existing antibiotic resistance but also to prevent the induction of further resistance mutations, thereby offering a novel therapeutic approach to combat antimicrobial resistance.</p>
-            </div>
-        </section>
-
-        <!-- Solutions部分 -->
-        <section id="solutions">
-            <h2 class="section-title">Solutions</h2>
-            <div class="content-with-image">
-                <div class="text-content">
-                    <p>Nanozymes represent a class of nanomaterials with significant potential and promising application prospects.We propose the rational design of a nanozyme capable of disrupting bacterial resistance mechanisms. This approach aims to reverse antibiotic resistance, thereby resensitizing bacteria to conventional antibiotics and enhancing their efficacy.</p>
-                    <p>A critical component of this strategy is the selection of an appropriate antibiotic agent. Our focus is directed towards hemin, an iron-containing porphyrin. Hemin serves as a cofactor for various enzymatic reactions in vivo and facilitates the transport of gaseous molecules. Its catalytic activity is primarily governed by histidine-modulated axial coordination, with its inherent porphyrin structure constituting the foundation for its enzyme-mimetic properties [10, 11].</p>
-                    <p>Many antibiotic molecules possess functional groups capable of effectively displacing the chloride atom in ferric hemin (Fe(III)-hemin). These groups can act as axial ligands to the iron-N4 plane, forming a pentacoordinate structural unit [12].</p>
-                    <p>This unit can subsequently self-assemble into nanoparticle aggregates via various non-covalent interactions, including hydrogen bonding, salt bridges, π-π stacking, and cation-π interactions, resulting in the formation of an antibiotic-nanozyme complex [13].</p>
-                </div>
-                <div class="image-content">
-                    <!-- 图片3位置 -->
-                    <div class="section-image">
-                        <img src="project/project.3.png" alt="Fig. 1.3. The extensive applications of nanozymes">
-                        <p class="section-image-caption">Fig. 1.3. The extensive applications of nanozymes. Reprinted from [15].</p>
-                    </div>
-                </div>
-            </div>
+            </section>
             
-            <div class="content-with-image">
-                <div class="text-content">
-                    <p>This engineered antibiotic-nanozyme retains its constituent antibiotic component. Crucially, it acquires catalytic properties through the axial ligand substitution, mimicking the natural histidine coordination found in many peroxidases. This catalytic capability enables the nanozyme to effectively degrade bacterial biofilms and alter membrane permeability. The disruption of the biofilm matrix and enhanced membrane permeability collectively facilitate improved antibiotic uptake by the target bacteria[14]. Furthermore, the molecular self-assembly synthesis of these antibiotic-nanozymes offers a straightforward and scalable production methodology, which is advantageous for potential future translation.</p>
-                </div>
-                <div class="image-content">
-                    <!-- 图片4位置 -->
-                    <div class="section-image">
-                        <img src="project/project.4.png" alt="Figure 1.4 Diagram of binding hemin to antibiotics">
-                        <p class="section-image-caption">Figure 1.4 Diagram of binding hemin to antibiotics (Antibiotic structure using gentamicin as an example)</p>
+            <section>
+                <div class="two-col">
+                    <div class="col text-col">
+                        <p>The engineered antibiotic nanozyme retains the intrinsic antibacterial activity of its antibiotic component while acquiring de novo catalytic functionality through axial ligand substitution, a structural feature that mimics the natural histidine coordination in peroxidases. This acquired catalytic activity facilitates efficient degradation of bacterial biofilms and modulates membrane permeability. The consequent disruption of the biofilm matrix, combined with increased membrane permeability, acts synergistically to enhance intracellular accumulation of the antibiotic within target bacteria<sup>[15]</sup>. Moreover, the molecular self-assembly approach employed for synthesizing these antibiotic nanozymes provides a straightforward and scalable fabrication process, presenting substantial potential for future translational applications.</p>
+                    </div>
+                    <div class="col image-col">
+                        <div class="fig">
+                            <img src="project/5.png" alt="Figure1.5 Formation of nanozyme by binding Hemin to FCZ and the mechanism of action of the nanozyme">
+                            <figcaption>Figure.5. Formation of nanozyme by binding Hemin to FCZ and the mechanism of action of the nanozyme</figcaption>
+                        </div>
                     </div>
                 </div>
-            </div>
-            
-            <div class="content-with-image">
-                <div class="text-content">
-                    <p>The proposed design strategy for antibiotic-nanozymes is likely applicable to a broad spectrum of antibiotic classes, potentially offering a significant improvement in addressing the current crisis of antibiotic resistance. We further postulate that selecting different cofactor molecules (adjuvants) beyond hemin could expand the applicability and provide greater multifunctionality to this platform.</p>
-                </div>
-                <div class="image-content">
-                    <!-- 图片5位置 -->
-                    <div class="section-image">
-                        <img src="project/project.5.png" alt="Figure1.5 Formation of nanozyme by binding Hemin to FCZ and the mechanism of action of the nanozyme">
-                        <p class="section-image-caption">Figure1.5 Formation of nanozyme by binding Hemin to FCZ and the mechanism of action of the nanozyme</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+            </section>
 
-        <!-- Goals部分 -->
-        <section id="goals">
-            <h2 class="section-title">Goals</h2>
-            <div class="text-content">
-                <p>The specific objectives of this project are as follows:</p>
-            </div>
-            <div class="goals-images">
-                <!-- 图片6位置 -->
-                <div class="goal-image-item">
-                    <div class="section-image">
+             <section class="section">
+                <div class="wide-margin">
+                    <p>The proposed design strategy for antibiotic nanozymes demonstrates potential applicability across a broad spectrum of antibiotic classes, representing a promising approach to addressing the current antibiotic resistance crisis. Furthermore, we anticipate that extending the selection of cofactor molecules beyond hemin could substantially expand the platform's versatility and introduce enhanced multifunctionality.</p>
+                </div>
+            </section>
+
+            <!-- Goals部分 -->
+            <section class="section">
+                <div class="emphasis-title">
+                    <h2>Goals</h2>
+                </div>
+                <div class="text-centered">
+                    <p>The specific objectives of this project are as follows:</p>
+                </div>
+                <div class="text-centered">
+                    <div class="fig center-fig">
                         <img src="project/project.goal.1.png" alt="Goal 1 Visualization">
-                        <p class="section-image-caption">Goal 1 Visualization</p>
+                       
                     </div>
-                </div>
-                
-                <!-- 图片7位置 -->
-                <div class="goal-image-item">
-                    <div class="section-image">
+                    <div class="fig center-fig">
                         <img src="project/project.goal2.png" alt="Goal 2 Visualization">
-                        <p class="section-image-caption">Goal 2 Visualization</p>
+                        
                     </div>
-                </div>
-                
-                <!-- 图片8位置 -->
-                <div class="goal-image-item">
-                    <div class="section-image">
+                    <div class="fig center-fig">
                         <img src="project/project.goal.3.png" alt="Goal 3 Visualization">
-                        <p class="section-image-caption">Goal 3 Visualization</p>
+                        
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <!-- Feasibility部分 -->
-        <section id="feasibility">
-            <h2 class="section-title">Feasibility</h2>
-            <div class="text-content">
-                <p>Our preliminary assessments of the antimicrobial activity of various synthesized antibiotic nanozymes have demonstrated that these constructs not only enhance the efficacy of conventional antibiotics by effectively combating both planktonic cells and biofilms of drug-resistant bacteria, but also employ multimodal mechanisms to reverse resistance patterns. These findings confirm the feasibility and rational design of our research project.</p>
-                <p>Our team members exhibit a strong collaborative spirit, with each individual contributing unique expertise, enabling efficient task completion through well-defined division of labor. When encountering challenges, open communication and mutual support among team members have been instrumental in overcoming obstacles. By systematically summarizing lessons learned from both successful and unsuccessful experiments, we continuously identify areas for improvement and refine our research direction. Furthermore, our advisor provides exceptional guidance and timely assistance whenever difficulties arise. Additionally, sufficient laboratory funding ensures the sustained progress of our experimental work.</p>
-            </div>
-        </section>
+            <!-- Feasibility部分 -->
+            <section class="section">
+                <div class="emphasis-title">
+                    <h2>Feasibility</h2>
+                </div>
+                <div class="wide-margin">
+                    <p>Our preliminary assessments of the antimicrobial activity of various synthesized antibiotic nanozymes have demonstrated that these constructs not only enhance the efficacy of conventional antibiotics by effectively combating both planktonic cells and biofilms of drug-resistant bacteria, but also employ multimodal mechanisms to reverse resistance patterns. These findings confirm the feasibility and rational design of our research project.</p>
+                    <p>Our team members exhibit a strong collaborative spirit, with each individual contributing unique expertise, enabling efficient task completion through well-defined division of labor. When encountering challenges, open communication and mutual support among team members have been instrumental in overcoming obstacles. By systematically summarizing lessons learned from both successful and unsuccessful experiments, we continuously identify areas for improvement and refine our research direction. Furthermore, our advisor provides exceptional guidance and timely assistance whenever difficulties arise. Additionally, sufficient laboratory funding ensures the sustained progress of our experimental work.</p>
+                </div>
+            </section>
 
-        <!-- 参考文献部分 -->
-        <section class="references">
-            <h2 class="section-title">References</h2>
-            <div class="reference-list">
-                <p>[1] Antimicrobial Resistance Collaborators. Global burden of bacterial antimicrobial resistance in 2019: a systematic analysis. Lancet. 2022;399(10325):629-655.</p>
-                <p>[2] Wright GD. Antibiotic adjuvants: rescuing antibiotics from resistance. Trends Microbiol. 2016;24(11):862-871.</p>
-                <p>[3] Shatalin K, Nuthanakanti A, Kaushik A, et al. Inhibitors of bacterial H2S biogenesis targeting antibiotic resistance and tolerance. Science. 2021;372(6547):1169-1175.</p>
-                <p>[4] Hu H, Wang H, Yang Y, et al. A DNase-mimetic artificial enzyme for the eradication of drug-resistant bacterial biofilm infections. Nanoscale. 2022;14(7):2676-2685.</p>
-                <p>[5] Liu C, Mao Y, Zhang J, et al. Metal-organic framework-modulated Fe3O4 composite au nanoparticles for antibacterial wound healing via synergistic peroxidase-like nanozymatic catalysis. J Nanobiotechnology. 2023;21(1):427.</p>
-                <p>[6] Tong A, Zhao L, He J, et al. Prussian blue nano-enzyme-assisted photodynamic therapy effectively eradicates MRSA infection in diabetic mouse skin wounds. Biomater Sci. 2023;11(18):6342-6356.</p>
-                <p>[7] Chen Z, Wang Z, Ren J, Qu X. Enzyme mimicry for combating bacteria and biofilms. Acc Chem Res. 2018;51(3):789-799.</p>
-                <p>[8] Gomez-Simmonds A, Uhlemann AC. Clinical implications of genomic adaptation and evolution.</p>
-                <p>[9] Cummins EA, Hall RJ, McInerney JO, McNally A. The role of potentiating mutations in the evolution of pandemic clones. Eur J Clin Microbiol Infect Dis. 2021.</p>
-                <p>[10] Poulos TL. Heme enzyme structure and function. Chem Rev. 2014;114(7):3919-3962.</p>
-                <p>[11] Liu Y, Qin Z. Hemin-based nanozymes: design, synthesis, and biomedical applications. Small. 2020;16(30):2001700.</p>
-                <p>[12] Scheidt WR, Reed CA. Spin-state/stereochemical relationships in iron porphyrins: implications for the hemoproteins. Chem Rev. 1981;81(6):543-555.</p>
-                <p>[13] Whitesides GM, Grzybowski B. Self-assembly at all scales. Science. 2002;295(5564):2418-2421.</p>
-                <p>[14] Gao L, Zhuang J, Nie L, et al. Intrinsic peroxidase-like activity of ferromagnetic nanoparticles. Nat Nanotechnol. 2007;2(9):577-583.</p>
-                <p>[15] Zhang X, Chen X, Zhao Y. Nanozymes: Versatile Platforms for Cancer Diagnosis and Therapy. Nanomicro Lett. 2022;14(1):95. Published 2022 Apr 6. doi:10.1007/s40820-022-00828-2</p>
-            </div>
-        </section>
+            <!-- 参考文献部分 -->
+            <section class="section references">
+                <div class="emphasis-title">
+                    <h2>References</h2>
+                </div>
+                <div class="refs">
+                    <p>[1] Antimicrobial Resistance Collaborators. Global burden of bacterial antimicrobial resistance in 2019: a systematic analysis. <i>Lancet</i>. 2022;399(10325):629-655.</p>
+                    <p>[2] Wright GD. Antibiotic adjuvants: rescuing antibiotics from resistance. <i>Trends Microbiol</i>. 2016;24(11):862-871.</p>
+                    <p>[3] Shatalin K, Nuthanakanti A, Kaushik A, et al. Inhibitors of bacterial H2S biogenesis targeting antibiotic resistance and tolerance. <i>Science</i>. 2021;372(6547):1169-1175.</p>
+                    <p>[4] Hu H, Wang H, Yang Y, et al. A DNase-mimetic artificial enzyme for the eradication of drug-resistant bacterial biofilm infections. <i>Nanoscale</i>. 2022;14(7):2676-2685.</p>
+                    <p>[5] Liu C, Mao Y, Zhang J, et al. Metal-organic framework-modulated Fe3O4 composite au nanoparticles for antibacterial wound healing via synergistic peroxidase-like nanozymatic catalysis. <i>J Nanobiotechnology</i>. 2023;21(1):427.</p>
+                    <p>[6] Tong A, Zhao L, He J, et al. Prussian blue nano-enzyme-assisted photodynamic therapy effectively eradicates MRSA infection in diabetic mouse skin wounds. <i>Biomater Sci</i>. 2023;11(18):6342-6356.</p>
+                    <p>[7] Zou Y, Liang C, Tang Z, et al. Biofilm-Responsive Nano-Antibiotics for Degradation of Extracellular Polymeric Substance Matrix and Reduction of Pathogenicity against Drug-Resistant Bacterial Infections. <i>ACS Nano</i>. 2025;19(32):29702-29716. doi:10.1021/acsnano.5c09764</p>
+                    <p>[8] Chen Z, Wang Z, Ren J, Qu X. Enzyme mimicry for combating bacteria and biofilms. <i>Acc Chem Res</i>. 2018;51(3):789-799.</p>
+                    <p>[9] Global Burden of Disease Study 2019 (GBD 2019) Results. Seattle, WA: University of Washington. https://vizhub.healthdata.org/gbd-results/.</p>
+                    <p>[10] Zheng Hu, Huarong Xu, et al. Nanozymes in the field of antibacterial applications: mechanisms and optimization strategies. <i>Coordination Chemistry Reviews</i>. Volume 543, 15 November 2025, 216939</p>
+                    <p>[11] Poulos TL. Heme enzyme structure and function. <i>Chem Rev</i>. 2014;114(7):3919-3962.</p>
+                    <p>[12] Liu Y, Qin Z. Hem-inased nanozymes: design, synthesis, and biomedical applications. <i>Small</i>. 2020;16(30):2001700.</p>
+                    <p>[13] Scheidt WR, Reed CA. Spin-state/stereochemical relationships in iron porphyrins: implications for the hemoproteins. <i>Chem Rev</i>. 1981;81(6):543-555.</p>
+                    <p>[14] Whitesides GM, Grzybowski B. Self-assembly at all scales. <i>Science</i>. 2002;295(5564):2418-2421.</p>
+                    <p>[15] Gao L, Zhuang J, Nie L, et al. Intrinsic peroxidase-like activity of ferromagnetic nanoparticles. <i>Nat Nanotechnol</i>. 2007;2(9):577-583.</p>
+                    <p>[16] Zhang X, Chen X, Zhao Y. Nanozymes: Versatile Platforms for Cancer Diagnosis and Therapy. <i>Nanomicro Lett</i>. 2022;14(1):95. Published 2022 Apr 6. doi:10.1007/s40820-022-00828-2</p>
+                </div>
+            </section>
+        </div>
     </main>
 
     <!-- 页脚 -->
-    <footer>
-        <p>&copy; 2023 Antibiotic Nanozyme Project. All rights reserved.</p>
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; 2025 Antibiotic Nanozyme Research Project.</p>
+        </div>
     </footer>
 
-    <script>
-        // ===== JavaScript区域 =====
-        
-        // 汉堡菜单切换
-        const hamburger = document.querySelector('.hamburger');
-        const navMenu = document.querySelector('.nav-menu');
-        
-        hamburger.addEventListener('click', () => {
-            hamburger.classList.toggle('active');
-            navMenu.classList.toggle('active');
-        });
-        
-        // 关闭汉堡菜单当点击链接时
-        document.querySelectorAll('.nav-menu a').forEach(n => n.addEventListener('click', () => {
-            hamburger.classList.remove('active');
-            navMenu.classList.remove('active');
-        }));
-        
-        // 滚动动画
-        const sections = document.querySelectorAll('section');
-        
-        const observerOptions = {
-            root: null,
-            rootMargin: '0px',
-            threshold: 0.1
-        };
-        
-        const observer = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, observerOptions);
-        
-        sections.forEach(section => {
-            observer.observe(section);
-        });
-        
-        // 导航栏滚动效果
-        window.addEventListener('scroll', () => {
-            const header = document.querySelector('header');
-            if (window.scrollY > 50) {
-                header.style.backgroundColor = 'rgba(26, 54, 93, 0.95)';
-            } else {
-                header.style.backgroundColor = '#1a365d';
-            }
-        });
-    </script>
+    <script src="scripts.js"></script>
 </body>
 </html>

@@ -1,0 +1,37 @@
+/* ===== 动画样式区域 ===== */
+
+/* 滚动动画 */
+section {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+section.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* 汉堡菜单动画 */
+.hamburger.active .ham-line:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.hamburger.active .ham-line:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active .ham-line:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -6px);
+}
+
+/* 移动菜单动画 */
+.mobile-menu.active {
+    display: flex;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}

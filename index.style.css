@@ -1,0 +1,620 @@
+/* 基础样式 */
+:root {
+    --primary-color: #3a2a1f;
+    --secondary-color: #3a2a1f;
+    --accent-color: #5a4a3f;
+    --text-light: #d6e2e0;
+    --text-dark: #212121;
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --transition: all 0.3s ease;
+    
+    /* 添加第一个网页的颜色变量 */
+    --bg-color: #5c3c2f;
+    --text-color: #d6e2e0;
+    --nav-color: #4a3429;
+    --accent: #8b7355;
+    --muted: #a89f95;
+    --border-color: #d6e2e0;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: #f9f9f9;
+    color: var(--text-dark);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* 视频开场样式 */
+#video-intro {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 1;
+    transition: opacity 1.5s ease-in-out; /* 添加淡出过渡 */
+}
+
+#intro-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 1;
+    transition: opacity 1.5s ease-in-out; /* 视频本身的淡出 */
+}
+
+#skip-intro {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    padding: 10px 20px;
+    background: rgba(255,255,255,0.3);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    z-index: 10000;
+    transition: var(--transition);
+}
+
+#skip-intro:hover {
+    background: rgba(255,255,255,0.5);
+}
+
+/* 淡出状态 */
+#video-intro.fade-out {
+    opacity: 0;
+}
+
+#video-intro.fade-out #intro-video {
+    opacity: 0;
+}
+
+.hidden {
+    display: none;
+}
+
+/* ===== 导航栏样式 - 已统一和修复 ===== */
+header {
+  background: url('sucai/瓦.png') center/cover;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+}
+
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 70px;
+}
+
+.logo {
+  color: var(--text-light);
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 1.2rem; /* 调小字体避免换行 */
+  letter-spacing: 0.5px;
+}
+
+/* 桌面导航 */
+.nav-menu {
+  display: flex;
+  gap: 1rem; /* 使用gap替代margin控制间距 */
+  list-style: none;
+}
+
+.nav-item {
+  margin-left: 0; /* 移除原来的margin */
+}
+
+.nav-link {
+  color: var(--text-light);
+  text-decoration: none;
+  padding: 0.35rem 0.6rem;
+  border-radius: 6px;
+  transition: all .18s ease;
+  font-weight: 400;
+  font-size: 0.9rem; /* 调小字体避免换行 */
+  display: block;
+}
+
+.nav-link:hover {
+  background: rgba(214, 226, 224, 0.15);
+  transform: translateY(-2px);
+}
+
+.nav-link.active {
+  background: rgba(214, 226, 224, 0.25);
+}
+
+/* 汉堡菜单 */
+.hamburger {
+  display: none;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
+.bar {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--text-light);
+  margin: 5px 0;
+  border-radius: 2px;
+  transition: all .25s ease;
+}
+
+/* 移动菜单 */
+.nav-menu.active {
+  position: fixed;
+  inset: 0;
+  background: rgba(58, 42, 31, 0.95);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  text-align: center;
+}
+
+.nav-menu.active .nav-link {
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+/* 汉堡菜单激活状态 */
+.hamburger.active .bar:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.active .bar:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+
+.hamburger.active .bar:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+/* 响应式设计 */
+@media (max-width: 900px) {
+  .nav-menu {
+    display: none;
+  }
+  
+  .hamburger {
+    display: block;
+  }
+  
+  .nav-menu.active {
+    display: flex;
+  }
+}
+
+/* 英雄区域 - 已修复与导航栏的空隙 */
+.hero {
+    background: 
+        linear-gradient(rgba(58, 42, 31, 0.7), rgba(58, 42, 31, 0.7)),
+        url('sucai/云，透明.png') center/cover no-repeat;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: var(--text-light);
+    /* 移除 margin-top: 70px; 修复空隙问题 */
+    padding: 0 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-content {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    z-index: 1;
+    position: relative;
+}
+
+.hero-text {
+    flex: 1;
+    max-width: 50%;
+    position: relative;
+    z-index: 2;
+    text-align: right;
+    margin-left: 0;
+    padding-left: 0;
+}
+
+.hero-text h1 {
+    font-size: 3.5rem;
+    margin-bottom: 20px;
+    line-height: 1.2;
+    width: 100%;
+    margin-left: 600px;
+    padding-left: 0;
+}
+
+/* 左图片 */
+.hero-corner-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 500px;
+    height: 800px;
+    z-index: 1;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding-left: 0px;
+}
+
+.hero-corner-image img {
+    max-width: 200%;
+    max-height: 200%;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: none;
+}
+
+/* 内容区域 */
+.content {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 0;
+}
+
+/* Section 通用样式 */
+.section {
+    padding: 80px 20px;
+    margin-bottom: 0;
+    position: relative;
+}
+
+.section-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+
+.section-text {
+    flex: 1;
+}
+
+.section-image {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.section-image img {
+    max-width: 100%;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+}
+
+.section h2 {
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+}
+
+.section p {
+    margin-bottom: 15px;
+}
+
+/* 第一部分 - 恢复正常布局 */
+.section-1 {
+    background-color: #35212A;
+    color: white;
+    position: relative;
+    overflow: hidden;
+}
+
+.section-1 h2 {
+    color: white;
+}
+
+/* 第二部分 */
+.section-2 {
+    background-color: #ebdec6;
+}
+
+.section-2 h2 {
+    color: black;
+}
+
+.section-2 p {
+    color: #b57743;
+}
+
+/* 第三部分 */
+.section-3 {
+    background-color: #b57743;
+    color: white;
+}
+
+.section-3 h2 {
+    color: white;
+}
+
+/* 第四部分 */
+.section-4 {
+    background-color: #35212A;
+    color: white;
+}
+
+.section-4 h2 {
+    color: white;
+}
+
+/* 轮播图样式 */
+.carousel-container {
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.image-container {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f0f0f0;
+    margin: 0 auto;
+}
+
+.image-frame {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.image-frame.active {
+    opacity: 1;
+}
+
+.image-frame img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    width: 865px;
+    height: 981px;
+}
+
+.placeholder {
+    width: 1000%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 1.2rem;
+}
+
+.carousel-caption {
+    text-align: center;
+    font-size: 0.85rem;
+    color: #555;
+    line-height: 1.5;
+    width: 100%;
+    margin-top: 10px;
+}
+
+/* 参考文献区域 */
+.references {
+    padding: 40px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: #f5f5f5;
+}
+
+.references h2 {
+    color: var(--primary-color);
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.references ol {
+    list-style: decimal;
+    padding-left: 20px;
+}
+
+.references li {
+    margin-bottom: 15px;
+    font-size: 0.9rem;
+}
+
+/* 页脚 */
+footer {
+    background-color: var(--primary-color);
+    color: var(--text-light);
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .hamburger {
+        display: block;
+    }
+
+    .hamburger.active .bar:nth-child(2) {
+        opacity: 0;
+    }
+
+    .hamburger.active .bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+
+    .hamburger.active .bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+
+    .nav-menu {
+        position: fixed;
+        left: -100%;
+        top: 70px;
+        gap: 0;
+        flex-direction: column;
+        background-color: var(--primary-color);
+        width: 100%;
+        text-align: center;
+        transition: 0.3s;
+        box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .nav-menu.active {
+        left: 0;
+    }
+
+    .nav-item {
+        margin: 16px 0;
+    }
+
+    .hero {
+        height: auto;
+        padding: 60px 20px;
+    }
+    
+    .hero-content {
+        flex-direction: column;
+    }
+    
+    .hero-text {
+        max-width: 100%;
+    }
+    
+    .hero-text h1 {
+        font-size: 2.5rem;
+    }
+    
+    .hero-image {
+        flex: 0 0 100%;
+        margin-right: 0;
+        margin-top: 30px;
+        justify-content: center;
+    }
+    
+    .hero-corner-image {
+        position: relative;
+        top: 0;
+        width: 100%;
+        height: 150px;
+        justify-content: center;
+        padding-left: 0;
+        margin-bottom: 20px;
+    }
+
+    .section-content {
+        flex-direction: column;
+    }
+
+    .section-image {
+        order: -1;
+    }
+    
+    .image-container {
+        height: 300px;
+    }
+}
+
+/* 动画样式 */
+/* 视频开场动画 */
+#video-intro {
+    animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* 主内容淡入动画 */
+#main-content {
+    animation: contentFadeIn 1s ease-in-out;
+}
+
+@keyframes contentFadeIn {
+    from { 
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to { 
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 英雄区域动画 */
+.hero-text h1 {
+    opacity: 0;
+    animation: fadeInUp 1s forwards 0.5s;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 内容区域动画 */
+.section {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s, transform 0.8s;
+}
+
+.section.visible {
+    opacity: 1;
+    transform: translateY(0);
+}

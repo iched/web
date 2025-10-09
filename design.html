@@ -6,27 +6,30 @@
   <title>Design — Antibiotic-Nanozymes Project</title>
 
   <!-- styles -->
-  <link rel="stylesheet" href="design.style.css">
-  <link rel="stylesheet" href="design.animation.css">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="animation.css">
 </head>
 <body>
   <!-- ===== Top Navigation ===== -->
   <header class="topbar">
     <div class="container topbar-inner">
-      <a class="brand" href="index.html">Home</a>
+      
       <nav class="nav-desktop">
+        <a href="index.html">Home</a>
         <a href="project.html">Project</a>
         <a href="design.html" class="active">Design</a>
         <a href="feasibility.html">Feasibility</a>
         <a href="method.html">Method</a>
-        <a href="labbook.html">Labbook</a>
+       
         <a href="result.html">Result</a>
         <a href="about.html">About Us</a>
         <a href="future.html">Future</a>
         <a href="elsi.html">ELSI</a>
       </nav>
       <button id="hamburger" class="hamburger" aria-label="Open menu">
-        <span class="ham-line"></span><span class="ham-line"></span><span class="ham-line"></span>
+        <span class="ham-line"></span>
+        <span class="ham-line"></span>
+        <span class="ham-line"></span>
       </button>
     </div>
     <div id="mobileMenu" class="mobile-menu" aria-hidden="true">
@@ -35,7 +38,7 @@
         <a href="design.html" class="active">Design</a>
         <a href="feasibility.html">Feasibility</a>
         <a href="method.html">Method</a>
-        <a href="labbook.html">Labbook</a>
+       
         <a href="result.html">Result</a>
         <a href="about.html">About Us</a>
         <a href="future.html">Future</a>
@@ -45,191 +48,195 @@
   </header>
 
   <!-- ===== Content ===== -->
-  <main class="page-wrap">
+  <main>
+    <div class="container">
+      <!-- Section 1 -->
+      <section class="section no-border">
+        <div class="emphasis-title text-centered">
+          <h2>Where Does Our Inspiration Come From?</h2>
+        </div>
+      </section>
 
-    <!-- Section 1 -->
-    <section class="container section text-centered emphasis-title">
-      <h2>Where Does Our Inspiration Come From?</h2>
-    </section>
+      <!-- Section 2 -->
+       <section class="media-section">
+        <div class="media-text">
+          <p>In ancient wooden structures, the mortise-and-tenon joint has been widely utilized owing to its remarkable mechanical strength, durability, structural simplicity, and aesthetic refinement. A defining characteristic of this joint system is its interlocking mechanism, in which one component features a projecting tenon and the other a precisely shaped mortise. Upon assembly, the tenon fits tightly into the mortise, forming a secure and stable connection without reliance on external fasteners. </p>
+        </div>
+        <div class="media-video">
+          <div class="video-container">
+            <!-- 直接嵌入视频 -->
+            <video controls>
+              <source src="video/out.mp4" type="video/mp4">
+            </video>
+            <!-- 或者使用视频占位符 -->
+            <!-- <div class="video-placeholder">
+              视频将在这里显示
+            </div> -->
+          </div>
+        </div>
+      </section>
 
-    <!-- Section 2 -->
-    <section class="container section two-col">
-      <div class="col text-col">
-        <p>Antimicrobial resistance (AMR) stands as one of the most critical challenges to global health today and is a leading cause of antibiotic treatment failure. When confronted with antibiotic therapy, the robust polymeric matrix of bacterial biofilms often restricts antibiotic penetration.<sup>[1]</sup> Furthermore, persister cells within biofilms typically cease proliferation and reduce metabolic activity to conserve energy, thereby ensuring their survival.<sup>[2]</sup> Additionally, bacteria increase the production of hydrogen sulfide gas in response to stress and damage, which helps them combat oxidative stress and enhances their antibiotic tolerance. <sup>[3]</sup></p>
-      </div>
-      <div class="col image-col">
-        <figure class="fig"><img src="design/design.1.png" alt="Fig.1"><figcaption>Fig.1<sup>[4]</sup> Model for persister-mediated relapse of bacterial infections</figcaption></figure>
-      </div>
-    </section>
+      <!-- Section 3 -->
+      <section class="section">
+        <div class="wide-margin">
+          <p>Inspired by this elegant architecture design, we propose a strategy to control the spatial arrangement of functional units through cooperative coordinated co-assembly, aiming to construct a novel nanozyme system for combating antimicrobial resistance.</p>
+        </div>
+      </section>
 
-    <!-- Section 3 -->
-    <section class="container section two-col">
-      <div class="col text-col">
-        <p>Nanozymes are a class of artificial nanomaterials possessing catalytic functions akin to natural enzymes.<sup>[4]</sup> They can directly attack bacterial structures such as cell membranes and DNA through mechanisms like catalyzing the generation of reactive oxygen species (ROS).<sup>[6][7]</sup> More uniquely, their multi-mechanistic physicochemical bactericidal approach is less likely to induce bacterial resistance, offering a promising new direction to address the dilemma of antibiotic resistance.</p>
-    
-      </div>
-      <div class="col image-col">
-        <figure class="fig"><img src="design/design.2.png" alt="Fig.2"><figcaption>Fig.2<sup>[8]</sup> Classification and Catalytic Diversity of Nanozymes</figcaption></figure>
-      </div>
-    </section>
+      <!-- Section 4 -->
+      <section class="section no-border">
+        <div class="emphasis-title text-centered">
+          <h2>How Do We Design Antibiotic Nanozymes?</h2>
+        </div>
+      </section>
 
-    <!-- Section 4 -->
-    <section class="container section wide-margin">
-      <p>Consequently, our team aims to enhance antibiotic uptake by modulating the bacterial redox homeostasis. We are developing antibiotic-nanozymes that synergize with antibiotics and inhibit biofilm formation, thereby reversing antibiotic resistance and improving the efficacy of bacterial eradication.</p>
-    </section>
+      <!-- Section 5 -->
+      <section class="section">
+        <div class="wide-margin">
+          <h1>Screening of Targeted Antibiotics</h1>
+          <p>Several representative antibiotics were selected for this study, including gentamicin (GM), which exhibits efficacy against both Gram-negative and Gram-positive bacteria, and fluconazole (FCZ), a first-line clinical antifungal agent used in combination with hemin.</p>
+          </div>
+        </section>
 
-    <!-- Section 5 -->
-    <section class="container section text-centered emphasis-title">
-      <h2>How Do We Design Antibiotic-Nanozymes?</h2>
-    </section>
+      <!-- Section 7 -->
+      <section class="section">
+        <div class="text-centered">
+          <figure class="fig center-fig">
+            <img src="design/1.png" alt="Fig.2 Chemical Structures of Gentamicin and Fluconazole">
+            <figcaption>Fig.2 Chemical Structures of Gentamicin and Fluconazole</figcaption>
+          </figure>
+        </div>
+      </section>
 
-    <!-- Section 6 -->
-    <section class="container section">
-      <p>We have successfully designed antibiotic-nanozymes constructed via axial coordination and supramolecular self-assembly, utilizing a range of antibiotics including Gentamicin and Fluconazole, along with hemin. In this system, the antibiotic acts as a structural scaffold, enabling targeting of intracellular sites and exerting its inherent antimicrobial mechanism. Simultaneously, hemin serves as the catalytic center, efficiently generating ROS to disrupt bacterial biofilms and their antioxidant defense systems. The synergistic integration of these two components forms a functionally unified composite material, achieving a powerful antibacterial effect where "1+1 >> 2," effectively overcoming the resistance issues associated with traditional antibiotics.</p>
-    </section>
+      <!-- Section 8 -->
+      <section class="section">
+        <div class="wide-margin">
+          <p>Additionally, over 1,700 FDA-approved drugs were screened through virtual screening to identify potential antibiotics targeting glucan in Candida albicans. Notable candidates identified include rapamycin (RAPA), previously reported by a Nobel Prize-winning scientist to effectively inhibit fungal growth<sup>[1]</sup>, and ceftriaxone sodium (CRO).</p>
+      </section>
 
-    <!-- Section 7 -->
-    <section class="container section text-centered">
-      <figure class="fig center-fig"><img src="design/design.3.png" alt="Fig.3"><figcaption>Fig.3 Assembly of GM with Hemin</figcaption></figure>
-    </section>
+      <!-- Section 9 -->
+      <section class="section">
+        <div class="text-centered">
+          <figure class="fig center-fig">
+            <img src="design/2.png" alt="Fig.3 Virtual Screening ">
+            <figcaption>Fig.3 Virtual Screening </figcaption>
+          </figure>
+        </div>
+      </section>
 
-    <!-- Section 8 -->
-    <section class="container section">
-      <h3 class="subhead">Selection of the Catalytic Core (Hemin)</h3>
-    </section>
+      <!-- Section 10 -->
+      <section class="section">
+        <div class="two-col">
+          <div class="col text-col">
+            <h1>Selection of the adjuvant</h1>
+            <p>Hemin, an essential molecule in the human body, serves as a cofactor in numerous enzymatic reactions and plays a pivotal role in the transport of gaseous molecules<sup>[2]</sup>. In cytochromes (cyt), heme undergoes axial coordination with specific amino acid residues. These axial ligands are crucial for modulating the structural and functional properties of hemoproteins, including redox potential, electronic configuration, spin state, electron transfer rate, and catalytic activity<sup>[3]</sup>.</p>
+          </div>
+          <div class="col image-col">
+            <figure class="fig">
+              <img src="design/3.png" alt="Fig.4 The Heme Structure in Cytochrome P450">
+              <figcaption>Fig.4 The Heme Structure in Cytochrome P450</figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
 
-    <!-- Section 9 -->
-    <section class="container section two-col">
-      <div class="col text-col">
-        <p class="para-title">Structural Advantage:</p>
-        <p>Hemin is the active center of natural peroxidases. Its central iron ion provides two axial coordination sites. In natural enzymes, one site coordinates with histidine to stabilize the structure, while the other participates in the catalytic reaction. This study leverages this characteristic by using antibiotic molecules to replace the protein scaffold and the role of histidine in natural enzymes, allowing them to axially coordinate with hemin and spontaneously self-assemble into nanozyme structures with enzyme-like activity.</p>
-      </div>
-      <div class="col image-col">
-        <figure class="fig"><img src="design/design.4.png" alt="Fig.4"><figcaption>Fig.4 The Chemical Structure of Hemin</figcaption></figure>
-      </div>
-    </section>
+      <!-- Section 11 -->
+      <section class="section">
+        <div class="wide-margin">
+          <h1>Co-assembly Process of Antibiotic Nanozymes</h1>
+          <p>Antibiotics contain diverse functional groups, such as imidazole, amino, hydroxyl, benzene rings, and pyridine moieties, which can effectively substitute the chlorine atom in chlorinated heme and function as axial ligands to the Fe-N<sub>4</sub> plane, thus forming a five-coordinate complex<sup>[4]</sup>.</p>
+        </div>
+      </section>
 
-    <!-- Section tujiawenzi zuoyou -->
-    <section class="container section two-col">
-      <div class="col text-col">
-        <p class="para-title">Biosafety Advantage:</p>
-        <p>As an endogenous substance in the human body (e.g., the core of hemoglobin), hemin is metabolized through established pathways, thus possessing inherent biocompatibility and degradability,<sup>[9]</sup> avoiding the potential long-term toxicity risks associated with some nanomaterials.</p>
-      </div>
-      <div class="col image-col">
-        <figure class="fig"><img src="design/design.5.png" alt="Fig.4"><figcaption>Fig.5<sup>[10]</sup> Origin of Hemin</figcaption></figure>
-      </div>
-    </section>
+      <!-- Section 12 -->
+      <section class="section">
+        <div class="text-centered">
+          <figure class="fig center-fig">
+            <img src="design/4.png" alt="Fig.5 The Binding Mode between Hemin and Antibiotics">
+            <figcaption>Fig.5 The Binding Mode between Hemin and Antibiotics</figcaption>
+          </figure>
+        </div>
+      </section>
 
-    <!-- Section 10 -->
-    <section class="container section two-col">
-      <div class="col text-col">
-        <p class="para-title">Antibiotic Selection:</p>
-        <p>This study selected a series of representative antibiotics, including Gentamicin (GM), Fluconazole (FCZ), Ceftriaxone (CRO), and Rapamycin (RAPA).These four drugs include antibacterial agents (GM, CRO) and an antifungal agent (FCZ).They cover three classic bactericidal pathways: inhibition of cell wall synthesis (CRO), inhibition of protein synthesis (GM), and disruption of cell membrane integrity (FCZ);They represent different chemical structure families: aminoglycosides, azoles, β-lactams, and macrolides, respectively.</p>
-      </div>
-      <div class="col image-col">
-        <figure class="fig"><img src="design/design.6.png" alt="Fig.5"><figcaption>Fig.6 Selection of Antibiotics</figcaption></figure>
-      </div>
-    </section>
+      <!-- Section 13 -->
+      <section class="section">
+        <div class="wide-margin">
+          <h1>The Universality of the Assembly Strategy for Antibiotic Nanozymes</h1>
+          <p>Antibiotic nanozymes can be engineered by employing various antibiotics, and the integration of different adjuvants may broaden their applicability, thereby improving functional versatility.</p>
+        </div>
+      </section>
 
-    <!-- Section chunwenzi -->
-    <section class="container section wide-margin">
-        <p>All these antibiotics can assemble with hemin via axial coordination and co-polymerize to form antibiotic-nanozymes, demonstrating the universality of our research approach for antibiotics with diverse chemical structures. </p>
-    </section>
+      <!-- Section 14 -->
+      <section class="section">
+        <div class="text-centered">
+          <figure class="fig center-fig">
+            <img src="design/5.png" alt="Fig.6 Broad-Spectrum Synthesis of Antibiotic Nanozymes">
+            <figcaption>Fig.6 Broad-Spectrum Synthesis of Antibiotic Nanozymes</figcaption>
+          </figure>
+        </div>
+      </section>
 
-    <!-- Section 11 -->
-    <section class="container section two-col">
-      <div class="col text-col">
-        <p class="para-title">Virtual Screening:</p>
-        <p>We employed computational virtual screening to predict and rank the binding affinity of dozens of antibiotics with hemin. The top two antibiotics with the highest predicted affinity were selected for further assembly with hemin into antibiotic-nanozymes, followed by experimental validation. The experimental results showed that nanozymes constructed from antibiotics with higher binding affinity exhibited stronger peroxidase (POD)-like activity and bactericidal efficacy. Computational virtual screening enables the rapid and accurate prediction of antibiotics with high binding affinity to hemin, facilitating the construction of high-performance nanozymes, saving time and economic costs, and significantly shortening the research and development cycle.</p>
-      </div>
-      <div class="col image-col">
-        <figure class="fig"><img src="design/design.7.png" alt="Fig.6"><figcaption>Fig.7 The Results of Virtual Screening</figcaption></figure>
-      </div>
-    </section>
+      <!-- Section 15 -->
+      <section class="section no-border">
+        <div class="emphasis-title text-centered">
+          <h2>What Are the Functions of Antibiotic Nanozymes?</h2>
+        </div>
+      </section>
 
-    <!-- Section 12 -->
-    <section class="container section two-col">
-      <div class="col text-col">
-        <p class="para-title">Co-assembly:</p>
-        <p>Various antibiotics (e.g., GM, FCZ, CRO) contain electron-donating atoms such as nitrogen and oxygen. These atoms can provide lone pair electrons to form stable coordination bonds with the axial empty orbitals of the iron ion in hemin, displacing the originally bound chloride ion and forming an antibiotic-hemin complex. </p>
-      </div>
-      <div class="col image-col">
-        <figure class="fig"><img src="design/design.8.png" alt="Fig.6"><figcaption>Fig.8 The Axial Coordination Site of Hemin</figcaption></figure>
-      </div>
-    </section>
+      <!-- Section 16 -->
+      <section class="section">
+        <div class="wide-margin">
+          <p>So far, we have successfully constructed a series of antibiotic nanozymes through the axial coordination between heme and different representative antibiotics, such as gentamicin (GM) and fluconazole (FCZ), designated as GM(Hemin) and FCZ(Hemin), respectively. Notably, each nanozyme exhibits a consistent capacity to reverse antimicrobial resistance.</p>
+          <P>Taking GM(Hemin) as an example, this assembly effectively eradicates biofilms by degrading glutathione (GSH) within the biofilm matrix. Subsequently, by leveraging its peroxidase (POD)-like activity, GM(Hemin) generates reactive oxygen species (ROS), which promote bacterial lipid peroxidation and compromise membrane integrity. Additionally, it could induce intracellular ROS accumulation, thereby enhancing the efficacy of co-administered antibiotics. The antibacterial strategy activates ferroptosis-like pathways, resulting in significant suppression of bacterial viability.</P>
+          <P>Similarly, FCZ(Hemin) could function as a ferroptosis inducer. This process enhances fungal ferroptosis, thereby improving the antimicrobial efficacy of FCZ. The free radicals generated by FCZ(Hemin)-catalyzed reactions further increase intracellular ROS levels, leading to amplified ferroptosis and increased antibiotic uptake in drug-resistant fungal strains.</P>
+        </div>
+      </section>
 
-    <!-- Section 13 -->
-    <section class="container section two-col">
-      <div class="col text-col">
-        <p class="para-title">Supramolecular Self-Assembly:</p>
-        <p>A single coordination complex is insufficient to constitute a functional nanozyme. Further ordered self-assembly via supramolecular interactions is necessary to form stable structures with dimensions ranging from tens to hundreds of nanometers. This process is primarily driven by three intermolecular forces:</p>
-        <p>1. Strong π-π stacking interactions exist between the porphyrin ring of hemin and the aromatic structures of the antibiotics.</p>
-        <p>2. The hydrophobic regions of both components spontaneously aggregate in the aqueous environment to minimize interfacial energy.</p>
-        <p>3. Where spatially permissible, one hemin center can simultaneously coordinate with two antibiotic molecules, forming a stable "sandwich"-type 1:2 complex, significantly enhancing the stability and catalytic efficiency of the assembly.</p>
-      </div>
-      <div class="col image-col">
-        <figure class="fig"><img src="design/design.9.png" alt="Fig.7"><figcaption>Fig.9 π-π Stacking</figcaption></figure>
-      </div>
-    </section>
+      <!-- Section 17 -->
+      <section class="section">
+        <div class="text-centered">
+          <figure class="fig center-fig">
+            <img src="design/6.png" alt="Fig.7 The construction of GM (Hemin) and its antibacterial mechanism">
+            <figcaption>Fig.7 The construction of GM (Hemin) and its antibacterial mechanism</figcaption>
+          </figure>
+        </div>
+      </section>
 
-    <!-- Section 14 -->
-    <section class="container section two-col">
-      <div class="col text-col">
-        <p class="para-title">Validation of Universality:</p>
-        <p>This strategy is not dependent on any specific antibiotic. We have validated its effectiveness across multiple structural classes of antibiotics (including GM, FCZ, CRO, and even RAPA), demonstrating the broad applicability of this platform technology.</p>
-      </div>
-      <div class="col image-col">
-        <figure class="fig"><img src="design/design.10.png" alt="Fig.8"><figcaption>Fig.10 Broad-Spectrum Synthesis of Antibiotic Nanozymes</figcaption></figure>
-      </div>
-    </section>
+      <!-- Section 18 -->
+      <section class="section">
+        <div class="text-centered">
+          <figure class="fig center-fig">
+            <img src="design/7.png" alt="Fig.8 The construction of FCZ(Hemin) and its antibacterial mechanism">
+            <figcaption>Fig.8 The construction of FCZ(Hemin) and its antibacterial mechanism</figcaption>
+          </figure>
+        </div>
+      </section>
 
-    <!-- Section 15 -->
-    <section class="container section text-centered emphasis-title">
-      <h2>See What It Can Do</h2>
-    </section>
+     
 
-    <!-- Section 16 -->
-    <section class="container section wide-margin">
-      <p><strong>Functional Mechanism: Multi-mechanistic Synergy to Reverse Resistance</strong></p>
-      <p>The antibiotic-hemin nanozymes developed in this study combat drug-resistant bacteria through synergistic multi-mechanisms. Their core function relies on their peroxidase-like activity, catalyzing the conversion of endogenous H₂O₂ into highly toxic ·OH radicals, which disrupts the bacterial redox homeostasis and consequently reverses resistance. Simultaneously, they degrade the biofilm matrix and eradicate persister cells. Furthermore, this system can induce fungal ferroptosis, inhibit efflux pumps, and suppress the H₂S-based antioxidant defense system, comprehensively enhancing the bactericidal effect. This bioinspired synergistic strategy provides an efficient new approach to overcoming antibiotic resistance, holding broad prospects for clinical application.</p>
-    </section>
-
-    <!-- Section 16 -->
-     <section class="container section text-centered">
-      <figure class="fig center-fig"><img src="design/design.11.png" alt="Fig.3"><figcaption>Fig.11  Antibiotic-Nanozymes Induce Bacterial Ferroptosis</figcaption></figure>
-    </section>
-
-    <section class="container section text-centered">
-      <figure class="fig center-fig"><img src="design/design.12.png" alt="Fig.3"><figcaption>Fig.12<sup>[11]</sup> POD-like Catalytic Mechanism of Antibiotic-Nanozymes</figcaption></figure>
-    </section>
-
-   
-    <!-- ===== References ===== -->
-    <section class="container section references">
-      <h4>References</h4>
-      <p>[1] Haval M, Unakal C, Ghagane SC, Pandit BR, Daniel E, Siewdass P, et al. Biofilms Exposed: Innovative Imaging and Therapeutic Platforms for Persistent Infections. Antibiotics. 2025;14(9):865. doi:10.3390/antibiotics14090865.</p>
-      <p>[2] Jafar T, Saha SR, Alam S, Saha O, Sultana KF. A review on survival strategies and social dynamics of microbial communities in biofilm. Indian J Microbiol. 2025; [published online ahead of print July 3, 2025]. doi:10.1007/s12088-025-01501-z</p>
-      <p>[3] Saxena P, Samanta D, Gnimpieba EZ, Goh KM, Sani RK. Sulfate-reducing bacteria: unraveling biofilm complexity, stress adaptation, and strategies for corrosion control. Sci Total Environ. Published online August 16, 2025. doi:10.1016/j.scitotenv.2025.180226</p>
-      <p>[4] Yuan Y, Chen L, Song K, et al. Stable peptide-assembled nanozyme mimicking dual antifungal actions. Nat Commun. 2024;15(1):5636. Published 2024 Jul 5. doi:10.1038/s41467-024-50094-6</p>
-      <p>[5] Lewis K. Riddle of biofilm resistance. Antimicrob Agents Chemother. 2001;45(4):999-1007. doi:10.1128/aac.45.4.999-1007.2001</p>
-      <p>[6] Zhu X, Lu W, Li Z, et al. Nanozyme-based synergistic therapy: FeCo-NC for effective bacterial eradication and wound tissue regeneration. J Colloid Interface Sci. 2025;699(Pt 1):138125. doi:10.1016/j.jcis.2025.138125</p>
-      <p>[7] Zheng H, Huarong X, Yiduo D, et al. Nanozymes in the field of antibacterial applications: mechanisms and optimization strategies. Coord Chem Rev. 2025;543:216939. doi:10.1016/j.ccr.2025.216939</p>
-      <p>[8] Gao P, Wang Y, Niu L, et al. Nanozymes: Classification, catalytic mechanisms, and biomedical applications. Chemical Reviews. 2024;124(12):7234-7302. doi:10.1021/acs.chemrev.3c00765</p>
-      <p>[9] Sahu A, Min K, Jeon SH, Kwon K, Tae G. Self-assembled hemin-conjugated heparin with dual-enzymatic cascade reaction activities for acute kidney injury. Carbohydr Polym. 2023;313:121088. doi:10.1016/j.carbpol.2023.121088</p>
-      <p>[10] Dixon SJ, Stockwell BR. Ferroptosis: process and function. Cell Death Differ. 2016;23(3):369-379. doi:10.1038/cdd.2015.158</p>
-      <p>[11] Wang J, Wang Y, Zhang L, Wang L, Kang Z, Fan Y. Cobalt- and iron-coordinated graphitic carbon nitride on reduced graphene oxide as a dual catalyst for hydrogen evolution and oxygen reduction reactions. Adv Mater Interfaces. 2020;7(8):1902106. doi:10.1002/admi.201902106</p>
-    </section>
-
+      <!-- ===== References ===== -->
+      <section class="section references">
+        <div class="emphasis-title">
+          <h2>References</h2>
+        </div>
+        <div class="refs">
+          <p>[1] Liu, N.N., et al., Phosphate is the third nutrient monitored by TOR in and provides a target for fungal-specific indirect TOR inhibition. <i>Proceedings of the National Academy of Sciences of the United States of America</i>, 2017. 114(24): p. 6346-6351.</p>
+          <p>[2] Jian, T., et al., Highly stable and tunable peptoid/hemin enzymatic mimetics with natural peroxidase-like activities. <i>Nat Commun</i>, 2022. 13(1): p. 3025.</p>
+          <p>[3] Lu, Y., S.M. Berry, and T.D. Pfister, Engineering Novel Metalloproteins: Design of Metal-Binding Sites into Native Protein Scaffolds. <i>Chemical Reviews</i>, 2001. 101(10): p. 3047-3080.</p>
+          <p>[4] Zhang, R.F., et al., Edge-Site Engineering of Defective Fe-N Nanozymes with Boosted Catalase-Like Performance for Retinal Vasculopathies. <i>Advanced Materials</i>, 2022. 34(39).</p>
+        </div>
+      </section>
+    </div>
   </main>
 
   <!-- ===== Footer ===== -->
   <footer class="site-footer">
-    <div class="container footer-inner">
-      <p>© Project Team • Antibiotic-Nanozymes • 2025</p>
+    <div class="container">
+      <p>&copy;2025 Antibiotic Nanozyme Research Project.</p>
     </div>
   </footer>
 
   <!-- scripts -->
-  <script src="design.scripts.js"></script>
+  <script src="scripts.js"></script>
 </body>
 </html>
