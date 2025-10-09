@@ -6,6 +6,193 @@
     <title>Antibiotic Nanozyme Project</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="animation.css">
+    <style>
+        /* ===== 卷轴样式 ===== */
+        .scroll-container {
+            position: relative;
+            width: 966px;
+            height: 0;
+            margin: 2rem auto;
+            overflow: hidden;
+            transition: height 1.5s ease;
+            background: transparent;
+        }
+        
+        .scroll-container.open {
+            height: 2220px;
+        }
+        
+        .scroll-top, .scroll-bottom {
+            position: absolute;
+            left: 0;
+            width: 100%;
+            height: 40px;
+            background: linear-gradient(to right, #8c7b6b, #a08e7e, #8c7b6b);
+            border-left: 10px solid #5d4c3d;
+            border-right: 10px solid #5d4c3d;
+            z-index: 2;
+            transition: all 1.5s ease;
+        }
+        
+        .scroll-top {
+            top: 0;
+            border-top: 2px solid #d6e2e0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        }
+        
+        .scroll-bottom {
+            bottom: 0;
+            border-bottom: 2px solid #d6e2e0;
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.3);
+        }
+        
+        .scroll-top::before, .scroll-bottom::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 20px;
+            height: 20px;
+            background: #d6e2e0;
+            border-radius: 50%;
+        }
+        
+        .scroll-top::before {
+            left: 10px;
+        }
+        
+        .scroll-bottom::before {
+            right: 10px;
+        }
+        
+        .image-wrapper {
+            position: absolute;
+            top: 40px;
+            left: 0;
+            width: 100%;
+            height: calc(100% - 80px);
+            background: #f5f1e8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            opacity: 0;
+            transition: opacity 0.5s ease 0.5s;
+        }
+        
+        .scroll-container.open .image-wrapper {
+            opacity: 1;
+        }
+        
+        .image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            transition: transform 1s ease;
+        }
+        
+        .scroll-container.open .image-wrapper img {
+            transform: scale(1);
+        }
+        
+        .scroll-button {
+            background: linear-gradient(to bottom, #8c7b6b, #6d5d4f);
+            border: 2px solid #d6e2e0;
+            border-radius: 5px;
+            color: #f5f1e8;
+            padding: 12px 30px;
+            font-size: 1rem;
+            font-family: 'SimSun', '宋体', serif;
+            font-weight: normal;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            z-index: 10;
+            letter-spacing: 1px;
+            margin: 1rem auto;
+            display: block;
+        }
+        
+        .scroll-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+            background: linear-gradient(to bottom, #9d8c7c, #7e6d5f);
+        }
+        
+        .scroll-button:active {
+            transform: translateY(0);
+        }
+        
+        .ink-drop {
+            position: absolute;
+            background: rgba(214, 226, 224, 0.7);
+            border-radius: 50%;
+            opacity: 0;
+            z-index: 1;
+            pointer-events: none;
+            filter: blur(2px);
+        }
+        
+        .ink-splash {
+            position: absolute;
+            background: rgba(214, 226, 224, 0.5);
+            border-radius: 50%;
+            opacity: 0;
+            z-index: 1;
+            pointer-events: none;
+            filter: blur(4px);
+        }
+        
+        @keyframes ink-drop-fall {
+            0% {
+                transform: translate(0, 0) scale(1);
+                opacity: 0.8;
+            }
+            100% {
+                transform: translate(var(--tx), var(--ty)) scale(0);
+                opacity: 0;
+            }
+        }
+        
+        @keyframes ink-splash-fall {
+            0% {
+                transform: translate(0, 0) scale(0.5);
+                opacity: 0.6;
+            }
+            50% {
+                transform: translate(var(--tx), var(--ty)) scale(1.5);
+                opacity: 0.4;
+            }
+            100% {
+                transform: translate(var(--tx), var(--ty)) scale(2);
+                opacity: 0;
+            }
+        }
+        
+        /* 响应式调整 */
+        @media (max-width: 1100px) {
+            .scroll-container {
+                width: 85%;
+                max-width: 966px;
+            }
+            
+            .scroll-container.open {
+                height: calc(85vw * 2220 / 966);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .scroll-container {
+                width: 95%;
+            }
+            
+            .scroll-container.open {
+                height: calc(95vw * 2220 / 966);
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- 顶部导航栏 -->
@@ -256,6 +443,21 @@
             </div>
         </section>
 
+        <!--23-->
+        <!-- 卷轴式图片展示 -->
+        <section class="section no-border">
+            <div class="text-centered">
+                <button class="scroll-button" id="scrollButton">click here to see materials and equipments</button>
+                <div class="scroll-container" id="scrollContainer">
+                    <div class="scroll-top"></div>
+                    <div class="image-wrapper">
+                        <img src="method/1.png" alt="实验流程图">
+                    </div>
+                    <div class="scroll-bottom"></div>
+                </div>
+            </div>
+        </section>
+
      </main>
 
     <!-- 页脚 -->
@@ -266,5 +468,126 @@
     </footer>
 
     <script src="scripts.js"></script>
+    <script>
+        // 卷轴效果脚本
+        document.addEventListener('DOMContentLoaded', function() {
+            const scrollButton = document.getElementById('scrollButton');
+            const scrollContainer = document.getElementById('scrollContainer');
+            let isOpen = false;
+            
+            if (scrollButton && scrollContainer) {
+                scrollButton.addEventListener('click', function() {
+                    if (!isOpen) {
+                        // 展开卷轴
+                        scrollContainer.classList.add('open');
+                        scrollButton.textContent = 'hide the picture';
+                        isOpen = true;
+                        
+                        // 创建水墨效果
+                        createInkEffect();
+                    } else {
+                        // 收起卷轴
+                        scrollContainer.classList.remove('open');
+                        scrollButton.textContent = 'expand the picture';
+                        isOpen = false;
+                    }
+                });
+            }
+            
+            function createInkEffect() {
+                // 水墨滴数量
+                const inkDropCount = 20;
+                // 水墨溅射数量
+                const inkSplashCount = 10;
+                
+                // 墨色 - 使用与网页主题一致的颜色
+                const inkColors = [
+                    'rgba(214, 226, 224, 0.8)', // 浅蓝灰色
+                    'rgba(168, 159, 149, 0.7)', // 次要文字色
+                    'rgba(139, 115, 85, 0.6)',  // 强调色
+                    'rgba(92, 60, 47, 0.5)'     // 背景色
+                ];
+                
+                // 获取按钮位置
+                const buttonRect = scrollButton.getBoundingClientRect();
+                const buttonCenterX = buttonRect.left + buttonRect.width / 2;
+                const buttonCenterY = buttonRect.top + buttonRect.height / 2;
+                
+                // 创建墨滴
+                for (let i = 0; i < inkDropCount; i++) {
+                    // 创建墨滴元素
+                    const inkDrop = document.createElement('div');
+                    inkDrop.classList.add('ink-drop');
+                    
+                    // 随机设置墨滴属性
+                    const size = Math.random() * 15 + 5;
+                    const color = inkColors[Math.floor(Math.random() * inkColors.length)];
+                    const animationDuration = Math.random() * 2 + 1;
+                    const animationDelay = Math.random() * 0.5;
+                    
+                    // 随机生成墨滴飞出方向
+                    const angle = Math.random() * Math.PI * 2;
+                    const distance = 50 + Math.random() * 150;
+                    const tx = Math.cos(angle) * distance;
+                    const ty = Math.sin(angle) * distance;
+                    
+                    // 应用样式
+                    inkDrop.style.width = `${size}px`;
+                    inkDrop.style.height = `${size}px`;
+                    inkDrop.style.backgroundColor = color;
+                    inkDrop.style.left = `${buttonCenterX}px`;
+                    inkDrop.style.top = `${buttonCenterY}px`;
+                    inkDrop.style.setProperty('--tx', `${tx}px`);
+                    inkDrop.style.setProperty('--ty', `${ty}px`);
+                    inkDrop.style.animation = `ink-drop-fall ${animationDuration}s ease-out ${animationDelay}s forwards`;
+                    
+                    // 添加到容器
+                    document.body.appendChild(inkDrop);
+                    
+                    // 动画结束后移除元素
+                    setTimeout(() => {
+                        inkDrop.remove();
+                    }, (animationDuration + animationDelay) * 1000);
+                }
+                
+                // 创建墨溅
+                for (let i = 0; i < inkSplashCount; i++) {
+                    // 创建墨溅元素
+                    const inkSplash = document.createElement('div');
+                    inkSplash.classList.add('ink-splash');
+                    
+                    // 随机设置墨溅属性
+                    const size = Math.random() * 30 + 20;
+                    const color = inkColors[Math.floor(Math.random() * inkColors.length)];
+                    const animationDuration = Math.random() * 2 + 1.5;
+                    const animationDelay = Math.random() * 0.3;
+                    
+                    // 随机生成墨溅飞出方向
+                    const angle = Math.random() * Math.PI * 2;
+                    const distance = 30 + Math.random() * 100;
+                    const tx = Math.cos(angle) * distance;
+                    const ty = Math.sin(angle) * distance;
+                    
+                    // 应用样式
+                    inkSplash.style.width = `${size}px`;
+                    inkSplash.style.height = `${size}px`;
+                    inkSplash.style.backgroundColor = color;
+                    inkSplash.style.left = `${buttonCenterX}px`;
+                    inkSplash.style.top = `${buttonCenterY}px`;
+                    inkSplash.style.setProperty('--tx', `${tx}px`);
+                    inkSplash.style.setProperty('--ty', `${ty}px`);
+                    inkSplash.style.animation = `ink-splash-fall ${animationDuration}s ease-out ${animationDelay}s forwards`;
+                    
+                    // 添加到容器
+                    document.body.appendChild(inkSplash);
+                    
+                    // 动画结束后移除元素
+                    setTimeout(() => {
+                        inkSplash.remove();
+                    }, (animationDuration + animationDelay) * 1000);
+                }
+            }
+        });
+    </script>
 </body>
 </html>
