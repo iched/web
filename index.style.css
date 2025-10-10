@@ -567,6 +567,24 @@ footer {
     .image-container {
         height: 300px;
     }
+
+    /* ===== 添加移动端文字对齐样式 ===== */
+    .section-text p,
+    .hero-text p,
+    .references li,
+    .carousel-caption {
+        text-align: justify;
+        text-justify: inter-word;
+    }
+
+    /* 确保特定元素保持原有对齐 */
+    .hero-text h1,
+    .section h2,
+    .references h2,
+    footer,
+    .carousel-caption:not(.text-content) {
+        text-align: center;
+    }
 }
 
 /* 动画样式 */

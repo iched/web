@@ -475,4 +475,18 @@ max-width: 100%;
   .section.no-border {
     margin-bottom: var(--spacing-sm);
   }
+
+
+/* ===== 添加移动端文字对齐样式 ===== */
+  .text-col p,
+  .wide-margin p,
+  .media-text p {
+    text-align: justify;
+  }
+  
+  /* 确保其他段落也保持对齐 */
+  .text-centered .fig + p,
+  .section p:not(.text-centered p) {
+    text-align: justify;
+  }
 }
