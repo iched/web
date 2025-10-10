@@ -10,7 +10,7 @@
   --text-color: #d6e2e0;      /* 字体色 - 浅蓝灰色 */
   --nav-color: ;       /* 导航栏颜色 - 更深的棕色 */
   --accent: #8b7355;          /* 强调色 */
-  --muted: #a89f95;           /* 次要文字色 */
+  --muted: white;           /* 次要文字色 */
   --border-color: #d6e2e0;    /* 边框色 - 与字体色一致 */
   
   /* ===== 尺寸系统 ===== */
@@ -21,7 +21,7 @@
   /* ===== 字体系统 ===== */
   --font-family: Inter, "Helvetica Neue", Arial, sans-serif;
   --font-size-base: 1.5rem;
-  --font-size-sm: 0.9rem;
+  --font-size-sm: 1.1rem;
   --font-size-lg: 1.2rem;
   --font-size-xl: 1.6rem;
   --font-size-xxl: 2.4rem;
@@ -98,7 +98,7 @@ body {
   border-radius: 6px;
   transition: all .18s ease;
   font-weight: 400;
-  font-size: 0.9rem; /* 调小字体避免换行 */
+  font-size: 1rem; /* 调小字体避免换行 */
 }
 
 .nav-desktop a:hover {
@@ -200,6 +200,7 @@ body {
 
 .text-col p {
   margin: 0 0 var(--spacing-sm) 0;
+  text-align: justify; /* 添加左右对齐 */
 }
 
 .para-title {
@@ -262,6 +263,10 @@ body {
   margin: auto;
 }
 
+.wide-margin p {
+  text-align: justify; /* 添加左右对齐 */
+}
+
 /* References */
 .references .refs {
   font-size: 1rem;
@@ -309,6 +314,7 @@ body {
 .media-text p {
   margin-bottom: var(--spacing-sm);
   line-height: 1.7;
+  text-align: justify; /* 添加左右对齐 */
 }
 
 .media-video {
@@ -342,6 +348,78 @@ body {
   justify-content: center;
   color: var(--text-color);
   font-size: var(--font-size-lg);
+}
+
+/* ===== 新添加：纯视频居中布局 ===== */
+.video-center-section {
+display: flex;
+justify-content: center;
+align-items: center;
+padding: var(--spacing-xl) 0;
+margin-bottom: var(--spacing-xxl);
+min-height: 60vh; /* 确保有足够的高度来垂直居中 */
+}
+
+.video-center-container {
+position: relative;
+width: 100%;
+max-width: 800px; /* 可以调整最大宽度 */
+margin: 0 auto;
+border-radius: var(--border-radius);
+overflow: hidden;
+box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.video-center-container video {
+width: 100%;
+height: auto;
+display: block;
+}
+
+.video-center-placeholder {
+width: 100%;
+padding-bottom: 56.25%; /* 16:9 宽高比 */
+background: linear-gradient(135deg, var(--accent) 0%, var(--bg-color) 100%);
+display: flex;
+align-items: center;
+justify-content: center;
+color: var(--text-color);
+font-size: var(--font-size-lg);
+}
+
+/* ===== 视频标注样式 - 与图片标注一致 ===== */
+.video-container figcaption,
+.video-center-container figcaption {
+  font-size: var(--font-size-sm);
+  color: var(--muted);
+  margin-top: 0.8rem;
+  text-align: center;
+  width: 100%;
+  font-style: italic;
+  line-height: 1.4;
+}
+
+/* 确保视频容器内的figure元素正确显示 */
+.video-container figure,
+.video-center-container figure {
+  margin: 0;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+/* 响应式设计 */
+@media (max-width: 900px) {
+.video-center-section {
+padding: var(--spacing-lg) 0;
+min-height: 50vh;
+}
+
+.video-center-container {
+max-width: 100%;
+}
 }
 
 /* 响应式设计 */

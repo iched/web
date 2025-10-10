@@ -308,6 +308,10 @@ header {
     flex: 1;
 }
 
+.section-text p {
+    text-align: justify; /* 添加两端对齐 */
+}
+
 .section-image {
     flex: 1;
     display: flex;
@@ -342,26 +346,28 @@ header {
     color: white;
 }
 
-/* 第二部分 */
-.section-2 {
+/* 第3部分 */
+.section-3 {
     background-color: #ebdec6;
 }
 
-.section-2 h2 {
-    color: black;
+.section-3 h2 {
+    color:#b57743;
 }
-
-.section-2 p {
+.section-3 h3 {
+    color:#b57743;
+}
+.section-3 p {
     color: #b57743;
 }
 
-/* 第三部分 */
-.section-3 {
+/* 第2部分 */
+.section-2 {
     background-color: #b57743;
     color: white;
 }
 
-.section-3 h2 {
+.section-2 h2 {
     color: white;
 }
 
@@ -433,8 +439,8 @@ header {
 
 .carousel-caption {
     text-align: center;
-    font-size: 0.85rem;
-    color: #555;
+    font-size: 1rem;
+    color: white;
     line-height: 1.5;
     width: 100%;
     margin-top: 10px;

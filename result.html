@@ -6,6 +6,8 @@
     <title>Results - Our Project</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="animation.css">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 <body>
     <!-- 顶部导航栏 -->
@@ -52,7 +54,7 @@
         <section class="section no-border">
             <div class="text-centered">
                 <div class="fig center-fig">
-                    <img src="result/1.jpg" alt="Overview of Experimental Results">
+                    <img src="result/0.jpg" alt="Overview of Experimental Results">
                   
                 </div>
             </div>
@@ -71,8 +73,8 @@
         <!-- 3. 纯文字 -->
         <section class="section">
             <div class="wide-margin">
-                <h2>MD Simulation of GM (Hemin) Co-assembly</h2>
-                <p>Based on molecular dynamics simulations performed on the gentamicin nanozyme as a representative model, we demonstrate the theoretical feasibility of forming the antibiotic nanozyme structure.</p>
+                <h2>Molecular docking and molecular dynamics simulation</h2>
+                <p>Computational analysis revealed that the primary amine of gentamicin forms a metal-coordination bond (2.3 Å) with the central iron atom of hemin, while its methylamine coordinates at a bond length of 2.7 Å. Furthermore, a single gentamicin molecule was shown to simultaneously interact with two hemin molecules through dual metal-coordination bonds.</p>
             </div>
         </section>
 
@@ -80,8 +82,25 @@
         <section class="section no-border">
             <div class="text-centered">
                 <div class="fig center-fig">
-                    <img src="result/2.jpg" alt="Fig.1 MD simulation of GM (Hemin) co-assembly based on the unit obtained">
+                    <img src="result/1.jpg" alt="Fig.1 MD simulation of GM (Hemin) co-assembly based on the unit obtained">
                     <figcaption>Fig.1 MD simulation of GM (Hemin) co-assembly based on the unit obtained</figcaption>
+                </div>
+            </div>
+        </section>
+
+        <!--jia-->
+        <section class="section">
+            <div class="wide-margin">
+                <h3 class="subhead text-centered">MD Simulation of GM (Hemin) Co-assembly</h3>
+                <p>Based on molecular dynamics simulations performed on the gentamicin nanozyme as a representative model, we demonstrate the theoretical feasibility of forming the antibiotic nanozyme structure.</p>
+            </div>
+        </section>
+
+        <section class="section no-border">
+            <div class="text-centered">
+                <div class="fig center-fig">
+                    <img src="result/2.jpg" alt="Fig.2">
+                    <figcaption>Fig.2 MD simulation of GM (Hemin) co-assembly based on the unit obtained </figcaption>
                 </div>
             </div>
         </section>
@@ -91,17 +110,39 @@
             <div class="two-col">
                 <div class="col text-col">
                     <h3 class="subhead">Peroxidase(POD)-like Activity Assay</h3>
-                    <p class="para-title">Peroxidase(POD)-like Activity Assay</p>
                     <p>We systematically evaluated the POD activity of nanozymes formed by the conjugation of various antibiotics with hemin. The results demonstrated markedly enhanced POD activity across all tested nanozymes, validating the broad applicability and efficacy of this assembly strategy for multiple antibiotic classes.</p>
                 </div>
                 <div class="col image-col">
                     <div class="fig">
                         <img src="result/3.png" alt="Fig.2 POD-like activity of  Levofloxacin HCl(LH) (Hemin) (a)、Fluconazole (FCZ) (Hemin) (b)、pyrithione (Hemin) (c)、Rapamycin(RAPA) (Hemin) (d)">
-                        <figcaption>Fig.2 POD-like activity of  Levofloxacin HCl(LH) (Hemin) (a)、Fluconazole (FCZ) (Hemin) (b)、pyrithione (Hemin) (c)、Rapamycin(RAPA) (Hemin) (d)</figcaption>
+                        <figcaption>Fig.3 POD-like activity of  Levofloxacin HCl(LH) (Hemin) (a)、Fluconazole (FCZ) (Hemin) (b)、pyrithione (Hemin) (c)、Rapamycin(RAPA) (Hemin) (d)</figcaption>
                     </div>
                 </div>
             </div>
         </section>
+
+        <!--jia-->
+        <section class="section">
+            <div class="wide-margin">
+                <h3 class="subhead text-centered">Theoretical Insight into the Bioinspired Activity</h3>
+                <p>To better elucidate the molecular catalytic mechanism, we simulated the POD-like activitiy of H<sub>2</sub>O<sub>2</sub> molecules oxidizing TMB on FCZ(Hemin), and the corresponding proposed reaction pathways were investigated using density functional theory (DFT) calculations as shown in Figure 4.</p>
+                <p>Therefore, the following equation serve as plausible mechanisms for the POD-like activity:</p>
+                <div class="equation">
+                $$\ce{H2O2 + 2TMB -> 2H2O + 2oxTMB} \tag{1}$$
+                </div>
+                <p>The whole POD-like catalytic cycle (eq (1)) consists of seven steps as described in Figure 4a, and two TMB molecules can be oxidized by a H<sub>2</sub>O<sub>2</sub> molecule converting to two oxTMB molecules on nanozymes.</p>
+            </div>
+        </section>
+
+        <section class="section no-border">
+            <div class="text-centered">
+                <div class="fig center-fig">
+                    <img src="result/4.png" alt="">
+                    <figcaption>Fig.4 The corresponding proposed reaction pathways of FCZ(Hemin)</figcaption>
+                </div>
+            </div>
+        </section>
+
 
         <!-- 6. 左文字右图片 -->
         <section class="section">
@@ -112,8 +153,8 @@
                 </div>
                 <div class="col image-col">
                     <div class="fig">
-                        <img src="result/4.png" alt="Fig.3 Anti-C. albicans activity of FCZ (Hemin)、CRO(Hemin)、RAPA (Hemin)">
-                        <figcaption>Fig.3 Anti-C. albicans activity of FCZ (Hemin)、CRO(Hemin)、RAPA (Hemin)</figcaption>
+                        <img src="result/5.png" alt="Fig.3 Anti-C. albicans activity of FCZ (Hemin)、CRO(Hemin)、RAPA (Hemin)">
+                        <figcaption>Fig.5 Anti-C. <i>albicans</i> activity of FCZ (Hemin)、CRO(Hemin)、RAPA (Hemin)</figcaption>
                     </div>
                 </div>
             </div>
@@ -131,8 +172,8 @@
         <section class="section no-border">
             <div class="text-centered">
                 <div class="fig center-fig">
-                    <img src="result/5.png" alt="Fig.4 (a)Binding energy sequencing heat map of antibiotic affinity with Hemin;Comparison of antibacterial activity of benzathine penicillin (b) and polymyxin B (c) against MRSA after assembly with hemin (d,e).">
-                    <figcaption>Fig.4 (a)Binding energy sequencing heat map of antibiotic affinity with Hemin;Comparison of antibacterial activity of benzathine penicillin (b) and polymyxin B (c) against MRSA after assembly with hemin (d,e).</figcaption>
+                    <img src="result/6.png" alt="Fig.4 (a)Binding energy sequencing heat map of antibiotic affinity with Hemin;Comparison of antibacterial activity of benzathine penicillin (b) and polymyxin B (c) against MRSA after assembly with hemin (d,e).">
+                    <figcaption>Fig.6 (a)Binding energy sequencing heat map of antibiotic affinity with Hemin;Comparison of antibacterial activity of benzathine penicillin (b) and polymyxin B (c) against MRSA after assembly with hemin (d,e).</figcaption>
                 </div>
             </div>
         </section>
@@ -146,23 +187,7 @@
             </div>
         </section>
 
-        <!-- 10. 纯文字 -->
-        <section class="section">
-            <div class="wide-margin">
-                <h3 class="subhead text-centered">Molecular docking and molecular dynamics simulation</h3>
-                <p>Computational analysis revealed that the primary amine of gentamicin forms a metal-coordination bond (2.3 Å) with the central iron atom of hemin, while its methylamine coordinates at a bond length of 2.7 Å. Furthermore, a single gentamicin molecule was shown to simultaneously interact with two hemin molecules through dual metal-coordination bonds.</p>
-            </div>
-        </section>
-
-        <!-- 11. 单张图 -->
-        <section class="section no-border">
-            <div class="text-centered">
-                <div class="fig center-fig">
-                    <img src="result/6.jpg" alt="Figure.5 Molecular docking simulation of GM (Hemin)">
-                    <figcaption>Figure.5 Molecular docking simulation of GM (Hemin)</figcaption>
-                </div>
-            </div>
-        </section>
+        
 
         <!-- 12. 左文字右图片 -->
         <section class="section">
@@ -174,7 +199,7 @@
                 <div class="col image-col">
                     <div class="fig">
                         <img src="result/7.jpg" alt="Fig.6 Particle size distribution (a) and Zeta potential (b) of GM (Hemin).">
-                        <figcaption>Fig.6 Particle size distribution (a) and Zeta potential (b) of GM (Hemin).</figcaption>
+                        <figcaption>Fig.7 Particle size distribution (a) and Zeta potential (b) of GM (Hemin).</figcaption>
                     </div>
                 </div>
             </div>
@@ -184,7 +209,7 @@
         <section class="section">
             <div class="wide-margin">
                 <h3 class="subhead text-centered">TEM Characterization of GM (Hemin)</h3>
-                <p>TEM revealed a cross-linked spherical nanostructure for the GM (Hemin) (Fig. 7a). High-angle annular dark-field imaging (Fig. 7b) showed uniform iron distribution at 5 nm resolution, while energy-dispersive X-ray spectroscopy(EDS) (Fig. 7c,d) confirmed homogeneous distribution of Fe, C, N, and O elements throughout the assembly, verifying successful incorporation of hemin-derived iron.</p>
+                <p>TEM revealed a cross-linked spherical nanostructure for the GM (Hemin) (Fig. 8a). High-angle annular dark-field imaging (Fig. 8b) showed uniform iron distribution at 5 nm resolution, while energy-dispersive X-ray spectroscopy(EDS) (Fig.8c,d) confirmed homogeneous distribution of Fe, C, N, and O elements throughout the assembly, verifying successful incorporation of hemin-derived iron.</p>
             </div>
         </section>
 
@@ -193,7 +218,7 @@
             <div class="text-centered">
                 <div class="fig center-fig">
                     <img src="result/8.jpg" alt="Fig.7 TEM images (a), High-Angle Annular Dark-Field image (b), and EDS (c: Iron; d: Carbon, Nitrogen, Oxygen, Iron) of GM(Hemin)">
-                    <figcaption>Fig.7 TEM images (a), High-Angle Annular Dark-Field image (b), and EDS (c: Iron; d: Carbon, Nitrogen, Oxygen, Iron) of GM(Hemin)</figcaption>
+                    <figcaption>Fig.8 TEM images (a), High-Angle Annular Dark-Field image (b), and EDS (c: Iron; d: Carbon, Nitrogen, Oxygen, Iron) of GM(Hemin)</figcaption>
                 </div>
             </div>
         </section>
@@ -208,7 +233,7 @@
                 <div class="col image-col">
                     <div class="fig">
                         <img src="result/9.jpg" alt="Fig.8 Full-wavelength UV-Vis absorption spectrum of GM (Hemin)">
-                        <figcaption>Fig.8 Full-wavelength UV-Vis absorption spectrum of GM (Hemin)</figcaption>
+                        <figcaption>Fig.9 Full-wavelength UV-Vis absorption spectrum of GM (Hemin)</figcaption>
                     </div>
                 </div>
             </div>
@@ -228,7 +253,7 @@
         <div class="text-centered">
             <div class="fig center-fig">
                 <img src="result/10.jpg" alt="Fig.9 The scavenging effect of GM (Hemin) on Methicillin-Resistant Staphylococcus aureus (MRSA) biofilm was observed by laser confocal imaging.">
-                <figcaption>Fig.9 The scavenging effect of GM (Hemin) on Methicillin-Resistant Staphylococcus aureus (MRSA) biofilm was observed by laser confocal imaging.</figcaption>
+                <figcaption>Fig.10 The scavenging effect of GM (Hemin) on Methicillin-Resistant <i>Staphylococcus aureus</i> (MRSA) biofilm was observed by laser confocal imaging.</figcaption>
             </div>
         </div>
     </section>
@@ -238,12 +263,12 @@
             <div class="two-col">
                 <div class="col text-col">
                     <h3 class="subhead">TEM Analysis of MRSA</h3>
-                    <p>TEM images of MRSA ultrastructure showed control cells maintaining regular, turgid morphology with intact cell walls and membranes. In contrast, gentamicin nanozyme-treated bacteria exhibited severe cellular shrinkage, membrane disruption, uneven cytoplasmic density, and evident intracellular content leakage</p>
+                    <p>TEM images of MRSA ultrastructure showed control cells maintaining regular, turgid morphology with intact cell walls and membranes. In contrast, gentamicin nanozyme-treated bacteria exhibited severe cellular shrinkage, membrane disruption, uneven cytoplasmic density, and evident intracellular content leakage.</p>
                 </div>
                 <div class="col image-col">
                     <div class="fig">
                         <img src="result/11.jpg" alt="Fig.10 Observation of MRSA treated with GM (Hemin) by transmission electron microscope.">
-                        <figcaption>Fig.10 Observation of MRSA treated with GM (Hemin) by transmission electron microscope.</figcaption>
+                        <figcaption>Fig.11 Observation of MRSA treated with GM (Hemin) by transmission electron microscope.</figcaption>
                     </div>
                 </div>
             </div>
@@ -259,7 +284,7 @@
             <div class="col image-col">
                 <div class="fig">
                     <img src="result/12.jpg" alt="Fig.11 Quantitative detection of protein leakage in GM (Hemin) treated MRSA.">
-                    <figcaption>Fig.11 Quantitative detection of protein leakage in GM (Hemin) treated MRSA.</figcaption>
+                    <figcaption>Fig.12 Quantitative detection of protein leakage in GM (Hemin) treated MRSA.</figcaption>
                 </div>
             </div>
         </div>
@@ -275,7 +300,7 @@
             <div class="col image-col">
                 <div class="fig">
                     <img src="result/13.jpg" alt="Fig.12 Detection of lipid peroxidation via Malondialdehyde levels">
-                    <figcaption>Fig.12 Detection of lipid peroxidation via Malondialdehyde levels</figcaption>
+                    <figcaption>Fig.13 Detection of lipid peroxidation via Malondialdehyde levels</figcaption>
                 </div>
             </div>
         </div>
@@ -291,7 +316,7 @@
             <div class="col image-col">
                 <div class="fig">
                     <img src="result/14.jpg" alt="Fig.13 Hydrogen Sulfide content in MRSA after treatment with GM (Hemin)">
-                    <figcaption>Fig.13 Hydrogen Sulfide content in MRSA after treatment with GM (Hemin)</figcaption>
+                    <figcaption>Fig.14 Hydrogen Sulfide content in MRSA after treatment with GM (Hemin)</figcaption>
                 </div>
             </div>
         </div>
@@ -308,8 +333,8 @@
     <!--23-->
     <section class="section no-border">
         <div class="text-centered">
-            <div class="emphasis-title">   
-                <h2>The synergistic effect of ferrous protoporphyrin in promoting the antifungal activity of Fluconazole (FCZ)</h2>
+            <div class="emphasis-title">  
+                <h2>The synergistic effect of ferrous protoporphyrin in promoting the antifungal activity of Fluconazole (FCZ)</h2> 
             </div>
         </div>
     </section>
@@ -324,7 +349,7 @@
             <div class="col image-col">
                 <div class="fig">
                     <img src="result/15.jpg" alt="Fig.14 SEM image and element energy spectrum analysis (Fe and F) of FCZ (Hemin)">
-                    <figcaption>Fig.14 SEM image and element energy spectrum analysis (Fe and F) of FCZ (Hemin)</figcaption>
+                    <figcaption>Fig.15 SEM image and element energy spectrum analysis (Fe and F) of FCZ (Hemin)</figcaption>
                 </div>
             </div>
         </div>
@@ -343,7 +368,7 @@
         <div class="text-centered">
             <div class="fig center-fig">
                 <img src="result/16.jpg" alt="Fig.15 Antifungal activity of FCZ(Hemin) and CRO(Hemin) against C. albicans. ">
-                <figcaption>Fig.15 Antifungal activity of FCZ(Hemin) and CRO(Hemin) against C. albicans. </figcaption>
+                <figcaption>Fig.16 Antifungal activity of FCZ(Hemin)(a) and CRO(Hemin)(b) against  <i>C.albicans</i>.  </figcaption>
             </div>
         </div>
     </section>
@@ -352,13 +377,13 @@
     <section class="section">
         <div class="two-col">
             <div class="col text-col">
-                <h3 class="subhead">SEM Analysis of C. albicans</h3>
-                <p>SEM observations revealed that the control C. albicans cells exhibited a plump and intact morphology. In contrast, the cells treated with the fluconazole nanozyme displayed a collapsed and shrunken surface with evident pores.</p>
+                <h3 class="subhead">SEM Analysis of <i>C. albicans</i></h3>
+                <p>SEM observations revealed that the control <i>C. albicans</i> cells exhibited a plump and intact morphology. In contrast, the cells treated with the fluconazole nanozyme displayed a collapsed and shrunken surface with evident pores.</p>
             </div>
             <div class="col image-col">
                 <div class="fig">
                     <img src="result/17.jpg" alt="Fig.16 SEM images of C. albicans treated with FCZ (Hemin).">
-                    <figcaption>Fig.16 SEM images of C. albicans treated with FCZ (Hemin).</figcaption>
+                    <figcaption>Fig.17 SEM images of <i>C. albicans</i> treated with FCZ (Hemin).</figcaption>
                 </div>
             </div>
         </div>
